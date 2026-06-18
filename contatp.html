@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RESET - Contato</title>
+
+<style>
+/* =========================================
+   RESETS E CONFIGURAÇÕES GERAIS
+   ========================================= */
+
+   :root{
+    --bg:#f4f7fb;
+    --text-main:#111827;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+ body { 
+    background-color: var(--bg); 
+    color: var(--text-main); 
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding-top: 120px;
+}
+
+/* BACKGROUND AZUL SUPERIOR */
+body::before {
+    content: '';
+    position: fixed;
+    top: -220px;
+    right: -220px;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(59,113,254,0.18) 0%, rgba(59,113,254,0) 70%);
+    z-index: -2;
+}
+
+/* BACKGROUND AZUL INFERIOR */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -250px;
+    left: -250px;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(165,180,252,0.18) 0%, rgba(165,180,252,0) 70%);
+    z-index: -2;
+}
+
+/* HEADER PRINCIPAL (NAVEGAÇÃO) */
+         header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 0px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo img {
+            width: 245px;
+            height: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #0F3962;
+            margin-left: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #3B71FE;
+        }
+ /* Botão "voltar" no Header */
+        .nav-btn {
+            background: #ce211b;
+            color: #ffffff !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #701a0e;
+            transform: translateY(-1px);
+        }
+
+/* =========================================
+   SEÇÃO DE CONTATO
+   ========================================= */
+.contato-wrapper {
+    /* Espaço extra no topo para compensar o header fixo */
+    padding: 140px 20px 80px 20px; 
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho do Contato (Títulos) */
+.contato-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contato-header .label {
+    color: #3B82F6;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.contato-header h1 {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+.contato-header p {
+    color: #64748B;
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Grid Principal (Colunas Esquerda e Direita) */
+.contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr; /* A direita (formulário) é maior */
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- COLUNA ESQUERDA: CARDS DE INFORMAÇÃO --- */
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #F1F5F9;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.info-icon {
+    width: 45px;
+    height: 45px;
+    background: #EFF6FF;
+    color: #3B82F6;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-text h3 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.info-text p {
+    font-size: 14px;
+    color: #64748B;
+}
+
+/* --- COLUNA DIREITA: FORMULÁRIO --- */
+.form-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #F1F5F9;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 12px 15px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #334155;
+    outline: none;
+    transition: 0.3s;
+    background: #fff;
+}
+
+.form-group input::placeholder, 
+.form-group textarea::placeholder {
+    color: #94A3B8;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-enviar {
+    background: #3B82F6;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-enviar:hover {
+    background: #2563EB;
+}
+ /* SITE FOOTER */
+        .site-footer {
+            background-color: #0a1931;
+            color: #94A3B8;
+            padding: 60px 40px 20px;
+            font-family: Arial, sans-serif;
+            margin-top: 80px;
+
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .brand-col {
+            flex: 1.5;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-image {
+            max-width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .brand-col p {
+            line-height: 1.6;
+            font-size: 14px;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #2e3a4e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .contact-col svg {
+            width: 16px;
+            height: 16px;
+            stroke: #3B82F6;
+        }
+
+/* =========================================
+   RESPONSIVIDADE (CELULARES E TABLETS)
+   ========================================= */
+@media (max-width: 850px) {
+    .contato-grid {
+        grid-template-columns: 1fr; /* Quebra para 1 coluna */
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr; /* Nome e Email um embaixo do outro */
+    }
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 20px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    nav a {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .contato-wrapper {
+        padding-top: 160px; /* Ajuste pro menu mobile */
+    }
+
+    .contato-header h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+  <div class="logo">
+    <img src="fotos/emily.jpeg" alt="Logo RESET">
+  </div>
+  <nav>
+    <a href="agendamento.html">Agendar</a>
+  <a href="saibamais.html">Sobre</a>
+    <a href="equipe.html">Equipe</a>
+    <a href="localidade.html">Localidade</a>
+    <a href="index.html" class="nav-btn">Voltar</a>
+</nav>
+</header>
+
+<!-- CONTEÚDO PRINCIPAL DE CONTATO -->
+<main class="contato-wrapper">
+    
+    <div class="contato-header">
+        <span class="label">CONTATO</span>
+        <h1>Fale conosco</h1>
+        <p>Estamos aqui para ajudar. Entre em contato e nossa equipe responderá o mais rápido possível.</p>
+    </div>
+
+    <div class="contato-grid">
+        
+        <!-- COLUNA ESQUERDA: CARDS -->
+        <div class="info-cards">
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div class="info-text">
+                    <h3>Telefone</h3>
+                    <p>(21) 97259-5866</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="info-text">
+                    <h3>Email</h3>
+                    <p>centrodeapoioreset@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div class="info-text">
+                    <h3>Endereço</h3>
+                    <p>Recreio dos Bandeirantes, RJ</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div class="info-text">
+                    <h3>Horário</h3>
+                    <p>Seg-Sex: 08:00–17:00</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA: FORMULÁRIO -->
+        <div class="form-card">
+            <form id="formContato">
+                
+                <div class="form-row">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" placeholder="Como podemos ajudar?" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    Enviar Mensagem
+                </button>
+
+            </form>
+        </div>
+
+    </div>
+
+</main>
+<!--BACKGROUND/HEADER-->
+  <footer class="site-footer" id="contato">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="fotos em geral/Centro De Apoio a Ludopatia (2).png" alt="Logo da Empresa" class="footer-logo-image">
+                </div>
+                <p>Sua nova versão começa hoje. Cuidado emocional com tecnologia e humanidade.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#servicos">Especialidades</a></li>
+                    <li><a href="saibamais.html">Sobre</a></li>
+                    <li><a href="equipe.html">Equipe</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>SERVIÇOS</h4>
+                <ul>
+                    <li><a href="#">Psicologia Clínica</a></li>
+                    <li><a href="#">Psiquiatria</a></li>
+                    <li><a href="#">Terapia Familiar</a></li>
+                    <li><a href="#">Emergência Emocional</a></li>
+                    <li><a href="#">Bem-estar Corporativo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>CONTATO</h4>
+                <ul>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        (21) 99876-5432
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        centrodeapoioreset@gmail.com
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Estr. do Pontal, 2327 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-877
+                    </li>
+                     <a href="https://www.instagram.com/clinica.reset_/" target="_blank">
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                   <path d="M16 11.37a4 4 0 1 1-2.83-3.46 4 4 0 0 1 2.83 3.46z"></path>
+                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                   </svg>
+                    @clinica.reset_
+                   </a> 
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 RESET — Centro Integrado de Apoio e Saúde Mental</p>
+            <p>Feito com <span style="color:#3B82F6;">💙</span> para seu bem-estar</p>
+        </div>
+    </footer>
+<script>
+
+const KEY = "resetCrudDashboardV2";
+
+const form = document.getElementById("formContato");
+
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const telefone = document.getElementById("telefone").value;
+    const mensagem = document.getElementById("mensagem").value;
+
+    // PEGA BANCO
+    let banco = JSON.parse(localStorage.getItem(KEY)) || {};
+
+    // CRIA ARRAY CONTATOS SE NÃO EXISTIR
+    if(!banco.contatos){
+        banco.contatos = [];
+    }
+
+    // NOVO CONTATO
+    const novoContato = {
+
+        id_contato: Date.now(),
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        mensagem: mensagem,
+        data: new Date().toLocaleString("pt-BR")
+
+    };
+
+    // ADICIONA
+    banco.contatos.push(novoContato);
+
+    // SALVA
+    localStorage.setItem(KEY, JSON.stringify(banco));
+
+    alert("Mensagem enviada com sucesso!");
+
+    form.reset();
+
+});
+
+</script>    
+</body>
+</html>

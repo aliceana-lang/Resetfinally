@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RESET | Saiba Mais</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter', sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(135deg,#f4f7fb,#e8eef7);
+    color:#1f2937;
+    overflow-x:hidden;
+}
+
+/* FUNDO */
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+    radial-gradient(circle at top left, rgba(29,78,216,0.15), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(59,130,246,0.12), transparent 30%);
+}
+
+.blur1,
+.blur2{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(100px);
+    z-index:-1;
+}
+
+.blur1{
+    width:350px;
+    height:350px;
+    background:#3b82f655;
+    top:-100px;
+    left:-100px;
+}
+
+.blur2{
+    width:300px;
+    height:300px;
+    background:#60a5fa55;
+    bottom:-100px;
+    right:-100px;
+}
+
+/* HEADER */
+
+header{
+    width:100%;
+    padding:7px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,0.7);
+    border-bottom:1px solid rgba(0,0,0,0.06);
+}
+
+.logo img{
+    height: 150px;
+    object-fit:contain;
+}
+
+.btn-voltar{
+    text-decoration:none;
+    background:linear-gradient(135deg,#4a7fa7,#1a3d63);
+    color:white;
+    padding:13px 24px;
+    border-radius:14px;
+    font-weight:600;
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(37,99,235,0.25);
+}
+
+.btn-voltar:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 35px rgba(37,99,235,0.35);
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:150px 8% 90px;
+}
+
+.hero-content{
+    max-width:950px;
+    animation:fadeUp 1s ease;
+}
+
+.hero-tag{
+    display:inline-block;
+    padding:10px 22px;
+    border-radius:50px;
+    background:rgba(37,99,235,0.08);
+    color:#4a7fa7;
+    font-weight:600;
+    margin-bottom:28px;
+}
+
+.hero h1{
+    font-size:72px;
+    line-height:1.05;
+    margin-bottom:30px;
+    color:#0f172a;
+}
+
+.hero h1 span{
+    color:#0f3470;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:2;
+    color:#475569;
+}
+
+/* SEÇÃO */
+
+.section{
+    padding:30px 8% 100px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:46px;
+    margin-bottom:15px;
+    color:#0f172a;
+}
+
+.section-title p{
+    color:#64748b;
+    font-size:18px;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#ffffffbf;
+    border:1px solid #ffffffcc;
+    backdrop-filter:blur(12px);
+    border-radius:28px;
+    padding:40px;
+    position:relative;
+    overflow:hidden;
+    transition:.5s;
+    box-shadow:0 10px 30px #0000000f;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:6px;
+    top:0;
+    left:0;
+    background:linear-gradient(90deg,#1a3d63,#4a7fa7);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px #0000001f;
+}
+
+/* ESTILO DOS ÍCONES SUAVES (IGUAL À SEGUNDA FOTO) */
+.card-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease;
+}
+
+/* Cores customizadas e pacíficas para cada princípio */
+.icon-missao {
+    background-color: #e6f7ed; /* Verde sutil de saúde/cuidado */
+    color: #10b981;
+}
+
+.icon-visao {
+    background-color: #eef2ff; /* Violeta/Azul sutil de clareza mental */
+    color: #4f46e5;
+}
+
+.icon-valores {
+    background-color: #fff7ed; /* Laranja/Warm sutil de acolhimento e empatia */
+    color: #f97316;
+}
+
+/* Efeito leve ao passar o mouse no card */
+.card:hover .card-icon {
+    transform: scale(1.05);
+}
+
+.card h3{
+    font-size:28px;
+    margin-bottom:18px;
+    color:#0f172a;
+}
+
+.card p{
+    color:#475569;
+    line-height:1.9;
+}
+
+/* SOBRE */
+
+.sobre{
+    margin-top:100px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.sobre-box{
+    background:white;
+    border-radius:32px;
+    padding:50px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+.sobre-box h2{
+    font-size:50px;
+    margin-bottom:25px;
+    color:#0f172a;
+}
+
+.sobre-box h2 span{
+    color:#1a3d63;
+}
+
+.sobre-box p{
+    color:#475569;
+    line-height:2;
+    margin-bottom:22px;
+    font-size:17px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.stat{
+    background:white;
+    padding:50px;
+    border-radius:24px;
+    text-align:center;
+    box-shadow:0 10px 30px #00000014;
+    transition:.4s;
+}
+
+.stat:hover{
+    transform:translateY(-8px);
+}
+
+.stat h3{
+    font-size:60px;
+    color:#1a3d63;
+    margin-bottom:10px;
+}
+
+.stat p{
+    color:#475569;
+}
+
+
+/* FOOTER NOVO */
+
+.site-footer{
+    background:#0a1931;
+    color:white;
+    padding:40px 8% 30px;
+    margin-top:80px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1.5fr;
+    gap:50px;
+}
+
+.footer-col h4{
+    font-size:16px;
+    margin-bottom:22px;
+    color:white;
+    letter-spacing:1px;
+}
+
+.footer-col ul{
+    list-style:none;
+}
+
+.footer-col ul li{
+    margin-bottom:14px;
+    color:#cbd5e1;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    line-height:1.7;
+}
+
+.footer-col ul li a{
+    color:#cbd5e1;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.footer-col ul li a:hover{
+    color:#b3cfe5;
+}
+
+.brand-col p{
+    color:#cbd5e1;
+    line-height:1.9;
+    margin-top:20px;
+}
+
+.footer-logo-image{
+    width:330px;
+    object-fit:contain;
+}
+
+.contact-col svg{
+    width:18px;
+    height:18px;
+    stroke:#b3cfe5;
+    stroke-width:2;
+    fill:none;
+    flex-shrink:0;
+    margin-top:3px;
+}
+
+.footer-bottom{
+    margin-top:60px;
+    padding-top:25px;
+    border-top:1px solid rgba(255,255,255,0.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.footer-bottom p{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* TIMELINE */
+
+.tratamento{
+    padding:100px 8%;
+}
+
+.timeline{
+    position:relative;
+    max-width:1000px;
+    margin:auto;
+}
+
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:35px;
+    top:0;
+    width:4px;
+    height:100%;
+    background:#1a3d63;
+}
+
+.timeline-item{
+    display:flex;
+    gap:30px;
+    margin-bottom:50px;
+    position:relative;
+}
+
+.timeline-number{
+    min-width:70px;
+    height:70px;
+    background:linear-gradient(135deg,#1a3d63,#4a7fa7);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:26px;
+    font-weight:700;
+    z-index:2;
+    box-shadow:0 10px 25px rgba(37,99,235,0.25);
+}
+
+.timeline-content{
+    background:white;
+    padding:30px;
+    border-radius:24px;
+    box-shadow:0 10px 30px #00000014;
+    flex:1;
+}
+
+.timeline-content h3{
+    margin-bottom:15px;
+    color:#0f172a;
+}
+
+.timeline-content p{
+    color:#475569;
+    line-height:1.8;
+}
+
+/* CONTADOR */
+
+.contador-section{
+    padding:100px 8%;
+}
+
+.contador-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:30px;
+}
+
+.contador-card{
+    background:white;
+    padding:45px 30px;
+    border-radius:28px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.contador-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:6px;
+    background:linear-gradient(90deg,#1a3d63,#4a7fa7);
+}
+
+.contador-card:hover{
+    transform:translateY(-10px);
+}
+
+.contador-card h3{
+    font-size:58px;
+    color:#1a3d63;
+    margin-bottom:15px;
+    font-weight:800;
+}
+
+.contador-card p{
+    color:#475569;
+    font-size:17px;
+    line-height:1.7;
+}
+
+/* FAQ */
+
+.faq{
+    padding:100px 8%;
+}
+
+.faq-container{
+    max-width:900px;
+    margin:auto;
+}
+
+.faq details{
+    background:white;
+    border-radius:20px;
+    padding:25px 30px;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    cursor:pointer;
+}
+
+.faq summary{
+    font-size:18px;
+    font-weight:600;
+    color:#0f172a;
+    list-style:none;
+}
+
+.faq summary::-webkit-details-marker{
+    display:none;
+}
+
+.faq details p{
+    margin-top:18px;
+    line-height:1.8;
+    color:#475569;
+}
+/* CTA FINAL */
+
+.cta-final{
+    margin:120px 8%;
+    padding:70px;
+    border-radius:40px;
+    background:linear-gradient(135deg,#1a3d63,#4a7fa7);
+    text-align:center;
+    color:white;
+    box-shadow:0 20px 50px rgba(37,99,235,0.25);
+}
+
+.cta-final h2{
+    font-size:52px;
+    margin-bottom:20px;
+}
+
+.cta-final p{
+    max-width:700px;
+    margin:0 auto 35px;
+    line-height:1.9;
+    font-size:18px;
+}
+
+.cta-final a{
+    display:inline-block;
+    padding:16px 34px;
+    background:white;
+    color:#0a1931;
+    text-decoration:none;
+    border-radius:14px;
+    font-weight:700;
+    transition:.4s;
+}
+
+.cta-final a:hover{
+    transform:translateY(-5px);
+}
+
+/* GALERIA PREMIUM */
+
+.galeria-premium{
+    padding:100px 8%;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:260px;
+    gap:25px;
+}
+
+.gallery-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    cursor:pointer;
+}
+
+.gallery-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.7s;
+}
+
+.gallery-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,
+    rgba(15,23,42,0.45),
+    transparent 60%);
+    opacity:0;
+    transition:.5s;
+    z-index:1;
+}
+
+.gallery-card:hover::before{
+    opacity:1;
+}
+
+.gallery-card:hover img{
+    transform:scale(1.08);
+}
+
+.gallery-card.large{
+    grid-column:span 2;
+    grid-row:span 2;
+}
+
+.gallery-card.wide{
+    grid-column:span 2;
+}
+
+
+
+/* RESPONSIVO */
+
+@media(max-width:1000px){
+
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+        grid-auto-rows:240px;
+    }
+
+    .gallery-card.large,
+    .gallery-card.wide{
+        grid-column:span 1;
+        grid-row:span 1;
+    }
+
+}
+
+/* RESPONSIVO FOOTER */
+
+@media(max-width:100px){
+
+    .footer-container{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .footer-container{
+        grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+/* ANIMAÇÃO */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1000px){
+
+    .hero h1{
+        font-size:56px;
+    }
+
+    .sobre{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    header{
+        padding:20px 6%;
+    }
+
+    .hero{
+        padding-top:180px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:17px;
+    }
+
+    .section-title h2{
+        font-size:34px;
+    }
+
+    .sobre-box{
+        padding:35px;
+    }
+
+    .sobre-box h2{
+        font-size:38px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .logo img{
+        height:52px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="blur1"></div>
+<div class="blur2"></div>
+
+<header>
+
+    <!-- TROQUE "logo.png" PELO NOME DA SUA LOGO -->
+    <div class="logo">
+        <img src="fotos em geral/logosemnomeesemfundo.png" alt="Logo RESET">
+    </div>
+
+    <a href="index.html" class="btn-voltar">
+        ← Voltar
+    </a>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">
+            ACOLHIMENTO • RECUPERAÇÃO • HUMANIZAÇÃO
+        </div>
+
+        <h1>
+         <span>RESET</span> sua nova versão começa hoje.
+        </h1>
+<p></p>
+        <p>
+            O Centro de apoio <b>RESET</b> nasceu com o propósito de oferecer apoio,
+            acolhimento e tratamento especializado para pessoas que enfrentam
+            a dependência em jogos. Mais do que um tratamento, buscamos devolver
+            equilíbrio emocional, autoestima e qualidade de vida aos nossos pacientes.
+        </p>
+        <p></p>
+        <p></p>
+       <p><b>Role a tela pra cima e descubra mais sobre a nossa empresa. ↑ </b></p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>Nossos princípios</h2>
+
+        <p>
+            Cada detalhe da RESET é guiado pelo cuidado, pela ética e pela transformação de vidas.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">
+                🌱
+            </div>
+
+            <h3>Missão</h3>
+
+            <p>
+               Oferecer tratamento, apoio psicológico e acolhimento para pessoas que 
+               enfrentam a Ludopatia, promovendo recuperação e qualidade de vida.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">
+                📜
+            </div>
+
+            <h3>Visão</h3>
+
+            <p>
+              Ser referência no tratamento e conscientização sobre
+               a dependência em jogos.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">
+                🤍
+            </div>
+
+            <h3>Valores</h3>
+
+            <p>
+                Empatia, ética, respeito, humanização e compromiss
+                 com a recuperação dos pacientes.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="sobre">
+
+        <div class="sobre-box">
+
+            <h2>
+                Por que a <span>RESET</span> existe?
+            </h2>
+
+            <p>
+                A ludopatia é um problema que impacta não apenas o paciente,
+                mas também sua família, relacionamentos e saúde emocional.
+                Muitas vezes silenciosa, essa dependência pode gerar consequências
+                profundas na vida pessoal e financeira.
+            </p>
+
+            <p>
+                Pensando nisso, a RESET foi criada para oferecer um ambiente seguro,
+                acolhedor e especializado, onde cada pessoa recebe atenção individual,
+                respeito e acompanhamento humanizado durante todo o processo de recuperação.
+            </p>
+
+            <p>
+                Nosso objetivo é ajudar pacientes a reconstruírem suas vidas,
+                recuperarem sua estabilidade emocional e reencontrarem esperança.
+            </p>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3>100%</h3>
+                <p>Atendimento Humanizado</p>
+            </div>
+
+            <div class="stat">
+                <h3>9h</h3>
+                <p>Apoio e acompanhamento</p>
+            </div>
+
+            <div class="stat">
+                <h3>+1</h3>
+                <p>Nova chance de recomeçar</p>
+            </div>
+
+            <div class="stat">
+                <h3>∞</h3>
+                <p>Compromisso com vidas</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="tratamento">
+
+    <div class="section-title">
+        <h2>Como funciona o tratamento</h2>
+
+        <p>
+            Cada etapa é pensada para oferecer acolhimento,
+            segurança e acompanhamento especializado.
+        </p>
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <div class="timeline-number">1</div>
+
+            <div class="timeline-content">
+                <h3>Primeiro acolhimento</h3>
+
+                <p>
+                    O paciente recebe apoio inicial em um ambiente seguro,
+                    humanizado e sem julgamentos.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">2</div>
+
+            <div class="timeline-content">
+                <h3>Avaliação psicológica</h3>
+
+                <p>
+                    Nossa equipe realiza uma análise individual para entender
+                    as necessidades emocionais e comportamentais.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">3</div>
+
+            <div class="timeline-content">
+                <h3>Plano terapêutico</h3>
+
+                <p>
+                    Criamos um acompanhamento personalizado focado na recuperação
+                    e no fortalecimento emocional.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-number">4</div>
+
+            <div class="timeline-content">
+                <h3>Acompanhamento contínuo</h3>
+
+                <p>
+                    O paciente recebe suporte constante durante todo o processo
+                    terapêutico e de adaptação.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTADOR ANIMADO -->
+
+<section class="contador-section">
+
+    <div class="section-title">
+
+        <h2>Nossos resultados</h2>
+
+        <p>
+            Compromisso, acolhimento e transformação em cada atendimento.
+        </p>
+
+    </div>
+
+    <div class="contador-grid">
+
+        <div class="contador-card">
+
+            <h3 class="counter" data-target="500">0</h3>
+
+            <p>
+                Atendimentos realizados
+            </p>
+
+        </div>
+
+        <div class="contador-card">
+
+            <h3 class="counter" data-target="98">0</h3>
+
+            <p>
+                Satisfação dos pacientes
+            </p>
+
+        </div>
+
+        <div class="contador-card">
+
+            <h3 class="counter" data-target="9">0</h3>
+
+            <p>
+                Suporte especializado
+            </p>
+
+        </div>
+
+        <div class="contador-card">
+
+            <h3 class="counter" data-target="5">0</h3>
+
+            <p>
+                Profissionais qualificados
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="faq">
+<div class="section-title">
+        <h2>Perguntas<span style="color:#041633;"> com Frequência</span></h2>
+        
+        <p>Tire suas dúvidas sobre o tratamento e a nossa metodologia.</p>
+    </div>
+<div class="faq-container">
+
+        <details>
+            <summary>Como saber se meu caso (ou de um familiar) é vício ou apenas passatempo?</summary>
+            <p>
+                O principal sinal de alerta é a perda de controle e o prejuízo na vida real. Se o jogo está causando dívidas, mentiras, isolamento social, queda no rendimento no trabalho ou nos estudos, e uma necessidade compulsiva de jogar para "recuperar" o que foi perdido, já não é um passatempo. É uma dependência que exige ajuda profissional.
+            </p>
+        </details>
+
+        <details>
+            <summary>Como funciona o tratamento e quem são os profissionais?</summary>
+            <p>
+               Nosso tratamento possui frequência semanal e é focado em quatro atividades oficiais: sessões de psicoterapia, arteterapia, meditação e educação financeira. Você será acompanhado por nossa equipe de 8 profissionais: 2 psicólogos, 1 terapeuta ocupacional (TO), 1 arteterapeuta, 1 professor de yoga, 1 educador financeiro, 1 administrador e 1 recepcionista.
+            </p>
+            </p>
+        </details>
+
+        <details>
+            <summary>As terapias são individuais ou em grupo?</summary>
+            <p>
+               Oferecemos os dois formatos para garantir o melhor aproveitamento. O atendimento com o psicólogo é sempre focado e individual (1 paciente). Já as demais atividades (arteterapia, meditação e educação financeira) ocorrem em formato de grupo reduzido, com capacidade máxima de 4 participantes.
+            </p>
+        </details>
+
+        <details>
+            <summary>Vou precisar me internar ou posso continuar trabalhando e estudando?</summary>
+            <p>
+                A grande maioria dos nossos tratamentos é feita em formato ambulatorial. Isso significa que o paciente comparece à clínica para as sessões e consultas, mas mantém sua rotina diária, convívio familiar e responsabilidades.Não ocorre internação na nossa clínica, pois só trabalhamos de 8h ás 17h. Mais em caso de rico de vida, encaminhamos o paciente para outra clínica, que tenha especialidade em internação. 
+            </p>
+        </details>
+
+        <details>
+            <summary>Qual é o papel da família na recuperação?</summary>
+            <p>
+                A família tem um papel indispensável. Sabemos que a dependência afeta a todos em casa, por isso, oferecemos suporte e orientação aos familiares, ensinando como estabelecer limites saudáveis e como ser um porto seguro durante o tratamento do paciente.
+            </p>
+        </details>
+
+        <details>
+           <summary>Quais são os horários de atendimento? Preciso me internar?</summary>
+            <p>
+                O tratamento é ambulatorial e não exige internação. Além disso, os horários são totalmente flexíveis: é você quem escolhe o horário das suas atividades. Isso permite que você continue com seus estudos, trabalho e convívio familiar normalmente.
+            </p>
+        </details>
+
+        <details>
+            <summary>Como lidar com o acesso ao celular e ao dinheiro durante o tratamento?</summary>
+            <p>
+                No começo do tratamento, criamos "barreiras de segurança". Isso pode envolver o bloqueio de sites e a transferência temporária da gestão do dinheiro para um familiar de confiança. Paralelamente, o paciente participará das nossas sessões de Educação Financeira para reaprender a administrar seus recursos de forma saudável.
+            </p>
+        </details>
+
+    </div>
+</section>
+<section class="cta-final">
+
+    <h2>
+        Sua nova versão pode começar hoje.
+    </h2>
+
+    <p>
+        Se cadastre na Reset e faça um plano. Dê o primeiro passo
+        para recuperar sua estabilidade emocional e qualidade de vida.
+    </p>
+
+    <a href="agendamento.html">
+        Fazer um agendamento
+    </a>
+
+</section>
+<!-- GALERIA PREMIUM -->
+
+<section class="galeria-premium">
+
+    <div class="section-title">
+
+        <h2>Nosso ambiente</h2>
+
+        <p>
+            Um espaço pensado para acolher, transmitir tranquilidade
+            e proporcionar conforto durante todo o tratamento.
+        </p>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-card large">
+            <img src="fotos em geral/DENTRO DA RESET.png" alt="">
+        </div>
+
+        <div class="gallery-card">
+            <img src="fotos em geral/imagem clinica (foto deitada).jpeg" alt="">
+        </div>
+
+        <div class="gallery-card">
+            <img src="fotos em geral/parte frente reset.png" alt="">
+        </div>
+
+        <div class="gallery-card">
+            <img src="fotos em geral/sofa.avif" alt="">
+        </div>
+
+        <div class="gallery-card wide">
+            <img src="fotos em geral/DENTRO DA RESET.png" alt="">
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="site-footer" id="contato">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="fotos em geral/Centro De Apoio a Ludopatia (2).png" alt="Logo da Empresa" class="footer-logo-image">
+                </div>
+                <p>Sua nova versão começa hoje. Cuidado emocional com tecnologia e humanidade.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#servicos">Especialidades</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="equipe.html">Equipe</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>SERVIÇOS</h4>
+                <ul>
+                    <li><a href="#">Psicologia Clínica</a></li>
+                    <li><a href="#">Psiquiatria</a></li>
+                    <li><a href="#">Terapia Familiar</a></li>
+                    <li><a href="#">Emergência Emocional</a></li>
+                    <li><a href="#">Bem-estar Corporativo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>CONTATO</h4>
+                <ul>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        (21) 99876-5432
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        centrodeapoioreset@gmail.com
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Estr. do Pontal, 2327 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-877
+                    </li>
+                   <a href="https://www.instagram.com/clinica.reset_/" target="_blank">
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                   <path d="M16 11.37a4 4 0 1 1-2.83-3.46 4 4 0 0 1 2.83 3.46z"></path>
+                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                   </svg>
+                    @clinica.reset_
+                   </a> 
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 RESET — Centro Integrado de Apoio e Saúde Mental</p>
+            <p>Feito com <span style="color:#3B82F6;">💙</span> para seu bem-estar</p>
+        </div>
+    </footer>
+    <script>
+
+
+/* CONTADOR ANIMADO */
+
+const counters = document.querySelectorAll('.counter');
+
+const animateCounter = (counter) => {
+
+    const target = Number(counter.dataset.target);
+
+    let current = 0;
+
+    const increment = target / 100;
+
+    const update = () => {
+
+        current += increment;
+
+        if(current < target){
+
+            if(target === 98){
+
+                counter.innerText = Math.floor(current) + "%";
+
+            } else if(target === 9){
+
+                counter.innerText = Math.floor(current) + "h";
+
+            } else {
+
+                counter.innerText = "+" + Math.floor(current);
+
+            }
+
+            requestAnimationFrame(update);
+
+        } else {
+
+            if(target === 98){
+
+                counter.innerText = "98%";
+
+            } else if(target === 9){
+
+                counter.innerText = "9h";
+
+            } else {
+
+                counter.innerText = "+" + target;
+
+            }
+
+        }
+
+    };
+
+    update();
+
+};
+
+/* OBSERVER */
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if(entry.isIntersecting){
+
+            animateCounter(entry.target);
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0.4
+});
+
+counters.forEach((counter) => {
+    observer.observe(counter);
+});
+
+
+
+</script> 
+
+</body>
+</html>

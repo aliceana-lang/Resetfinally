@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESET - Nossa Equipe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3B71FE;
+            --bg-light: #F8FAFC;
+            --text-dark: #1A1D27;
+            --text-gray: #6B7280;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--white); color: var(--text-dark); }
+
+ body { 
+    background-color: var(--bg); 
+    color: var(--text-main); 
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding-top: 120px;
+}
+
+/* BACKGROUND AZUL SUPERIOR */
+body::before {
+    content: '';
+    position: fixed;
+    top: -220px;
+    right: -220px;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(59,113,254,0.18) 0%, rgba(59,113,254,0) 70%);
+    z-index: -2;
+}
+
+/* BACKGROUND AZUL INFERIOR */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -250px;
+    left: -250px;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(165,180,252,0.18) 0%, rgba(165,180,252,0) 70%);
+    z-index: -2;
+}
+        /* HEADER PRINCIPAL (NAVEGAÇÃO) */
+         header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 0px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo img {
+            width: 210px;
+            height: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #0F3962;
+            margin-left: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #3B71FE;
+        }
+        /* Botão "voltar" no Header */
+        .nav-btn {
+            background: #ce211b;
+            color: #ffffff !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #701a0e;
+            transform: translateY(-1px);
+        }
+
+        /* SITE FOOTER */
+        .site-footer {
+            background-color: #0a1931;
+            color: #94A3B8;
+            padding: 60px 40px 20px;
+            font-family: Arial, sans-serif;
+            margin-top: 80px;
+
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .brand-col {
+            flex: 1.5;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-image {
+            max-width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .brand-col p {
+            line-height: 1.6;
+            font-size: 14px;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #2e3a4e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .contact-col svg {
+            width: 16px;
+            height: 16px;
+            stroke: #3B82F6;
+        }
+
+        /* --- HEADER DA SEÇÃO --- */
+        .team-container { padding: 60px 5%; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .section-tag { color: var(--primary); font-weight: 600; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+        h1 { font-size: 42px; font-weight: 800; margin: 10px 0; }
+        .subtitle { color: var(--text-gray); margin-bottom: 50px; }
+
+        /* --- GRID DE ESPECIALISTAS --- */
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .team-card {
+            background: var(--white); border-radius: 24px; overflow: hidden;
+            border: 1px solid var(--border); transition: 0.3s; text-align: left;
+        }
+        .team-card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.08); transform: translateY(-5px); }
+
+        .image-container { position: relative; height: 350px; width: 100%; overflow: hidden; }
+        
+        /* ALTERAÇÃO FEITA AQUI EMBAIXO: object-fit: contain; object-position: center; */
+        .image-container img { width: 100%; height: 100%; object-fit: contain; object-position: center; transition: 0.5s; }
+        
+        .team-card:hover .image-container img { scale: 1.05; }
+
+        .card-content { padding: 24px; }
+        
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .name { font-size: 20px; font-weight: 700; }
+        .rating { color: #F59E0B; font-weight: 700; font-size: 14px; }
+
+        .specialty { color: var(--primary); font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+        .id-number { color: var(--text-gray); font-size: 12px; margin-bottom: 15px; }
+
+        /* Tags de Expertise */
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+        .tag { 
+            background: rgba(74, 222, 128, 0.15); color: #166534; 
+            padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; 
+        }
+
+        /* Botão Agendar (Agora ocupando a largura total do card) */
+        .btn-agendar { 
+            display: flex; background: var(--primary); color: white; padding: 14px; 
+            border-radius: 12px; text-decoration: none; text-align: center; 
+            font-weight: 700; font-size: 15px; align-items: center; justify-content: center; 
+            gap: 10px; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-agendar:hover { background-color: #2563EB; box-shadow: 0 4px 12px rgba(59, 113, 254, 0.3); }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="logo">
+    <img src="fotos em geral/logosemnomeesemfundo.png" alt="Logo RESET">
+  </div>
+  <nav>
+    <a href="agendamento.html"> Agendamento</a>
+    <a href="saibamais.html">Sobre</a>
+    <a href="contatp.html">Contato</a>
+     <a href="localidade.html">Localidade</a>
+    <a href="index.html" class="nav-btn">Voltar</a>
+  </nav>
+</header>
+
+    <section class="team-container">
+    <span class="section-tag">Nossa Equipe</span>
+    <h1>Especialistas</h1>
+    <p class="subtitle">Profissionais qualificados e comprometidos com o seu bem-estar emocional.</p>
+    
+    <div class="team-grid">
+
+          <div class="team-card">
+            <div class="image-container">
+                <img src="fotos/hellen administradora desenho.png" alt="Dr. Hellen">
+            </div>
+
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="name">Dr. Hellen</span>
+                    <span class="rating">⭐ 4.7</span>
+                </div>
+
+                <p class="specialty">Educadora Financeira</p>
+                <p class="id-number">CRP 06/112283</p>
+
+                <div class="tags">
+                    <span class="tag">Reaprendizagem monetária</span>
+                    <span class="tag">economia</span>
+                    <span class="tag">Reestruturação</span>
+                </div>
+
+                <a href="agendamento.html" class="btn-agendar">📅 Agendar Consulta</a>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="image-container">
+                <img src="fotos/emilydesenho.png" alt="Dra. Emily">
+            </div>
+
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="name">Dra. Emily</span>
+                    <span class="rating">⭐ 4.9</span>
+                </div>
+
+                <p class="specialty">Psicologia Clínica</p>
+                <p class="id-number">CRP 06/98741</p>
+
+                <div class="tags">
+                    <span class="tag">Vícios</span>
+                    <span class="tag">Depressão</span>
+                    <span class="tag">Burnout</span>
+                </div>
+
+                <a href="agendamento.html" class="btn-agendar">📅 Agendar Consulta</a>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="image-container">
+                <img src="fotos/alicedese nhoofc.png" alt="Dr. Alice">
+            </div>
+
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="name">Dr. Alice</span>
+                    <span class="rating">⭐ 4.9</span>
+                </div>
+
+                <p class="specialty">Arte terapeuta</p>
+                <p class="id-number">CRM SP 185432</p>
+
+                <div class="tags">
+                    <span class="tag">Arte e vida</span>
+                    <span class="tag">Criatividade</span>
+                    <span class="tag">TDAH</span>
+                </div>
+
+                <a href="agendamento.html" class="btn-agendar">📅 Agendar Consulta</a>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="image-container">
+                <img src="fotos/professorayogajulia.png" alt="Dra. Julia">
+            </div>
+
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="name">Dra. Júlia</span>
+                    <span class="rating">⭐ 4.7</span>
+                </div>
+
+                <p class="specialty">Professora de Yoga</p>
+                <p class="id-number">CRP 06/112283</p>
+
+                <div class="tags">
+                    <span class="tag">Relaxamento</span>
+                    <span class="tag">Meditação</span>
+                    <span class="tag">Crise de Ansiedade</span>
+                </div>
+
+                <a href="agendamento.html" class="btn-agendar">📅 Agendar Consulta</a>
+            </div>
+        </div>
+
+      <div class="team-card">
+            <div class="image-container">
+                <img src="fotos/yan desenho ofc.png" alt="Dr. Yan">
+            </div>
+
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="name">Dr. Yan</span>
+                    <span class="rating">⭐ 4.9</span>
+                </div>
+
+                <p class="specialty">Pisicologo</p>
+                <p class="id-number">CRP 06/98741</p>
+
+                <div class="tags">
+                    <span class="tag">Ansiedade</span>
+                    <span class="tag">Crises</span>
+                    <span class="tag">Restruturação</span>
+                </div>
+
+                <a href="agendamento.html" class="btn-agendar">📅S Agendar Consulta</a>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="image-container">
+                <img src="fotos/kaikydesenho.png" alt="Dr. Kaiky">
+            </div>
+
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="name">Dr. Kaiky</span>
+                    <span class="rating">⭐ 4.9</span>
+                </div>
+
+                <p class="specialty">Administrador</p>
+                <p class="id-number">CRM SP 185432</p>
+
+                <div class="tags">
+                    <span class="tag">bem estar sempre</span>
+                    <span class="tag">Entre em contato quando precisar</span>
+                    <span class="tag">Foco</span>
+                </div>
+
+                <a href="agendamento.html" class="btn-agendar">📅 Agendar Consulta</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+    <footer class="site-footer" id="contato">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="fotos em geral/Centro De Apoio a Ludopatia (2).png" alt="Logo da Empresa" class="footer-logo-image">
+                </div>
+                <p>Seu recomeço começa aqui. Cuidado emocional com tecnologia e humanidade.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#servicos">Especialidades</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="equipe.html">Equipe</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>SERVIÇOS</h4>
+                <ul>
+                    <li><a href="#">Psicologia Clínica</a></li>
+                    <li><a href="#">Psiquiatria</a></li>
+                    <li><a href="#">Terapia Familiar</a></li>
+                    <li><a href="#">Emergência Emocional</a></li>
+                    <li><a href="#">Bem-estar Corporativo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>CONTATO</h4>
+                <ul>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        (21) 99876-5432
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        centrodeapoioreset@gmail.com
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Estr. do Pontal, 2327 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-877
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 RESET — Centro Integrado de Apoio e Saúde Mental</p>
+            <p>Feito com <span style="color:#3B82F6;">💙</span> para seu bem-estar</p>
+        </div>
+    </footer>
+
+</body>
+</html>

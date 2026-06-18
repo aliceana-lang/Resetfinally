@@ -1,0 +1,2774 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RESET - Área do Paciente</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
+
+    <style>
+        /* CONFIGURAÇÕES GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #ffffff;
+        }
+
+        /* HEADER (Atualizado para o estilo clean da imagem) */
+        header {
+            position: relative;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 3px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 700;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .menu-btn{
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+        .logo img {
+            width: 250px;
+            height: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #0F3962;
+            margin-left: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #3B71FE;
+        }
+
+        /* Botão "Buscar ajuda" no Header */
+        .nav-btn {
+            background: #0F3962;
+            color: #ffffff !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #1e4f85;
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+   MENU LATERAL (3 BARRINHAS)
+   ========================================= */
+.menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #EEF2FF;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 22px;
+}
+
+.menu-btn:hover {
+    background: #E0E7FF;
+}
+
+/* Visível em telas menores ou como menu principal */
+@media(max-width: 992px) {
+    .desktop-nav { display: none !important; }
+    .menu-btn { display: flex; }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.1);
+    transition: .4s ease-in-out;
+    z-index: 2000;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.aberta {
+    left: 0;
+}
+
+.fechar-menu {
+    align-self: flex-end;
+    cursor: pointer;
+    font-size: 24px;
+    color: #0F3962;
+    margin-bottom: 20px;
+    background: none;
+    border: none;
+    font-weight: bold;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #64748B;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover, .sidebar a.ativo {
+    background: #EEF2FF;
+    color: #091931;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1500;
+    display: none;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.overlay.ativo {
+    display: block;
+    opacity: 1;
+}
+/* Estilos para o Menu Sanfona */
+    .sidebar-menu { display: flex; flex-direction: column; gap: 0; }
+    .accordion-item { border-bottom: 1px solid var(--border); }
+    .accordion-header { 
+        padding: 14px 16px; cursor: pointer; display: flex; justify-content: space-between; 
+        font-weight: 600; font-size: 14px; color: var(--text-muted);
+    }
+    .accordion-header:hover { color: var(--primary); background: #EFF6FF; }
+    .accordion-content { display: none; padding-bottom: 10px; }
+    .accordion-content a { 
+        display: block; padding: 8px 16px 8px 32px; color: var(--text-muted); 
+        text-decoration: none; font-size: 13px; 
+    }
+    .accordion-content a:hover { color: var(--primary); }
+
+/* =========================================
+TERÇA DO RECOMEÇO
+========================================= */
+
+.terca-recomeco{
+    padding:100px 8%;
+    background:linear-gradient(
+        135deg,
+        #f8fbff,
+        #ffffff,
+        #eef6ff
+    );
+}
+
+.terca-container{
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.terca-badge{
+    display:inline-block;
+    padding:10px 18px;
+    background:#dbeafe;
+    color:#1A3D63;
+    border-radius:999px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.terca-info h2{
+    font-size:52px;
+    color:#0a1931;
+    margin-bottom:20px;
+}
+
+.terca-aviso{
+    display:inline-block;
+    background:#4A7FA7;
+    color:white;
+    padding:12px 20px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.terca-info p{
+    color:#64748b;
+    font-size:18px;
+    line-height:1.9;
+    margin-bottom:35px;
+}
+
+.terca-dados{
+    display:flex;
+    gap:30px;
+    margin-bottom:35px;
+}
+
+.dado{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.dado strong{
+    display:block;
+    color:#1A3D63;
+    font-size:28px;
+}
+
+.dado span{
+    color:#64748b;
+    font-size:14px;
+}
+
+.btn-terca{
+    display:inline-block;
+    background:#4A7FA7;
+    color:white;
+    text-decoration:none;
+    padding:16px 34px;
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-terca:hover{
+    transform:translateY(-3px);
+}
+
+.terca-imagem img{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+    border-radius:30px;
+    box-shadow:0 20px 40px rgba(37,99,235,.15);
+}
+
+.terca-precos{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.terca-card{
+    background:white;
+    border-radius:24px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.06);
+    transition:.3s;
+}
+
+.terca-card:hover{
+    transform:translateY(-8px);
+}
+
+.terca-card span{
+    font-size:34px;
+}
+
+.terca-card h3{
+    margin:15px 0 10px;
+}
+
+.terca-card p{
+    color:#64748b;
+    margin-bottom:15px;
+}
+
+.terca-card strong{
+    font-size:32px;
+    color:#1A3D63;
+}
+
+.terca-card.destaque{
+    border:2px solid #2563eb;
+}
+
+@media(max-width:992px){
+
+    .terca-container{
+        grid-template-columns:1fr;
+    }
+
+    .terca-info{
+        text-align:center;
+    }
+
+    .terca-dados{
+        justify-content:center;
+    }
+
+    .terca-precos{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .terca-info h2{
+        font-size:40px;
+    }
+}
+
+@media(max-width:768px){
+
+    .terca-precos{
+        grid-template-columns:1fr;
+    }
+
+    .terca-imagem img{
+        height:300px;
+    }
+
+    .terca-info h2{
+        font-size:32px;
+    }
+
+    .terca-dados{
+        flex-direction:column;
+    }
+}
+/* =========================================
+   SEÇÃO DE PLANOS
+   ========================================= */
+.planos-section {
+    background: #F8FAFC;
+    padding: 100px 40px;
+}
+
+.planos-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.card-plano {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-plano:hover {
+    transform: translateY(-8px);
+    border-color: #1A3D63;
+    box-shadow: 0 15px 40px rgba(59, 113, 254, 0.1);
+}
+
+.plano-destaque {
+    border: 2px solid #B3CFE5;
+    transform: scale(1.05);
+}
+
+.plano-destaque:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+.badge-desconto {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #DCFCE7;
+    color: #16A34A;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.card-plano h3 {
+    color: #0F3962;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.plano-preco {
+    font-size: 36px;
+    color: #0a1931;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.plano-preco span {
+    font-size: 16px;
+    color: #64748B;
+    font-weight: normal;
+}
+
+.lista-beneficios {
+    list-style: none;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.lista-beneficios li {
+    color: #475569;
+    font-size: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.lista-beneficios li::before {
+    content: "✓";
+    color: #1A3D63;
+    font-weight: bold;
+}
+
+.btn-plano {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #EEF2FF;
+    color: #4A7FA7;
+    padding: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-plano.primario {
+    background: #B3CFE5;
+    color: #ffffff;
+}
+
+.btn-plano:hover {
+    background: #0F3962;
+    color: #ffffff;
+}
+
+@media(max-width: 768px) {
+    .plano-destaque {
+        transform: scale(1);
+    }
+    .plano-destaque:hover {
+        transform: translateY(-8px);
+    }
+}
+/* ===== NOVO ESTILO DE PREÇOS ===== */
+
+.plano-preco-novo {
+    margin: 20px 0 25px;
+}
+
+.parcelado {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0 5px; /* Reduzi a margem inferior para o texto à vista ficar próximo */
+}
+
+.parcelas {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0F3962;
+}
+
+.valor-parcela {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.centavos {
+    font-size: 20px;
+    color: #64748B;
+}
+
+/* CLASSE NOVA PARA O VALOR À VISTA */
+.valor-a-vista {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748B;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.plano-destaque .valor-parcela {
+    color: #1A3D63;
+}
+
+@media(max-width:768px){
+    .valor-parcela {
+        font-size: 46px;
+    }
+    .parcelas {
+        font-size: 22px;
+    }
+}
+
+.tipo-plano {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0a1931;
+    margin-bottom: 16px;
+}
+
+.economia-tag {
+    display: inline-block;
+    background: #ECFDF5;
+    color: #16A34A;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 8px;
+    border-radius: 90px;
+    margin-bottom: 20px;
+}
+
+        /* HERO SECTION (Novo Layout Lado a Lado da Imagem) */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(to right, #ffffff, #0d214dd0);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 140px 80px 80px 80px;
+            gap: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efeito de brilho azul sutil no fundo superior direito */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(122, 202, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 580px;
+            z-index: 2;
+        }
+
+        .hero-label {
+            color: #144492;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            color: #0F3962;
+            line-height: 1.15;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+
+        .hero .descricao {
+            font-size: 16px;
+            color: #64748B;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        /*ESSES PACIENTE CONFIAM NA RESET*/
+        .hero-pacientes {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+    gap: 16px;
+}
+
+.hero-pacientes img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    margin-left: -12px;
+}
+
+.hero-pacientes img:first-child {
+    margin-left: 0;
+}
+
+.pacientes-texto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.pacientes-texto strong {
+    color: #0F3962;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.pacientes-texto span {
+    color: #0a1931;
+    font-size: 15px;
+}
+
+        .hero-btn-primary {
+            padding: 15px 32px;
+            background: #0F3962;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(15, 57, 98, 0.15);
+        }
+
+        .hero-btn-primary:hover {
+            background: #1e4f85;
+            transform: translateY(-1px);
+        }
+
+        .hero-btn-secondary {
+            color: #0F3962;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: 0.3s;
+        }
+
+        .hero-btn-secondary:hover {
+            color: #3B71FE;
+        }
+
+      /* =========================================
+           SLIDESHOW HERO (FADE SUAVE)
+           ========================================= */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            margin-top: 70px;
+        }
+
+        .slideshow-calmo {
+            position: relative;
+            width: 100%;
+            max-width: 620px;
+            /* Mantém a caixa na mesma proporção para não dar pulos na tela */
+            aspect-ratio: 4 / 3; 
+        }
+
+        .slideshow-calmo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 32px;
+            box-shadow: 0 50px 120px #0000000f;
+            position: absolute; /* Coloca as fotos uma por cima da outra */
+            top: 0;
+            left: 0;
+            opacity: 0;
+            /* Animação total de 15 segundos (5s por imagem) */
+            animation: fadeCalmo 10s infinite;
+        }
+
+        /* Define a ordem de entrada de cada imagem atrasando o início da animação */
+        .slideshow-calmo img:nth-child(1) { animation-delay: 0s; }
+        .slideshow-calmo img:nth-child(2) { animation-delay: 3s; }
+        .slideshow-calmo img:nth-child(3) { animation-delay: 6s; }
+        .slideshow-calmo img:nth-child(4) { animation-delay: 9s; }
+
+        /* Cria o efeito de surgir (1), ficar um tempo visível, e desaparecer (0) */
+        @keyframes fadeCalmo {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            45% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 32px; /* Curvatura idêntica à foto */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+        }
+
+        /* SECTIONS BASE */
+        section {
+            padding: 100px 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            font-family: 'Tenor Sans', sans-serif;
+            margin-bottom: 20px;
+            color: #0a1931;
+        }
+
+        /* SOBRE */
+        .sobre {
+            background: #fff;
+        }
+
+        .sobre p {
+            line-height: 1.7;
+            font-size: 18px;
+        }
+
+        /* ESPECIALIDADES / SERVIÇOS */
+        .servicos {
+            background: #FAFAFA;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 650px;
+        }
+
+        .section-label {
+            color: #3B71FE;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0a1931;
+        }
+
+        .section-header p {
+            color: #64748B;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .card-especialidade {
+            background: #fff;
+            border: 1px solid #F1F5F9;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: left;
+            transition: 0.3s;
+            /* NOVAS REGRAS DE GRID AQUI PARA BAIXO */
+    display: grid;
+    grid-template-columns: auto 1fr; /* Cria duas colunas: uma do tamanho do ícone e outra pro resto */
+    align-items: center; /* Alinha o título bem no meio do ícone */
+    column-gap: 20px; /* Espaço horizontal entre o ícone e o título */
+    row-gap: 16px; /* Espaço vertical entre as linhas (título, texto, tags) */
+}
+        
+
+        .card-especialidade:hover,
+        .card-especialidade.active {
+            border-color: #A5B4FC;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+        }
+
+        .icon-blue { background: #EEF2FF; color: #4F46E5; }
+        .icon-green { background: #ECFDF5; color: #10B981; }
+        .icon-orange { background: #FFF7ED; color: #F97316; }
+        .icon-red { background: #FEF2F2; color: #EF4444; }
+        .icon-dark { background: #F1F5F9; color: #334155; }
+        .icon-pink{ background: #EEF2FF; color: #b90cc9;}
+
+        .card-especialidade h3 {
+            font-size: 22px;
+            color: #0a1931;
+            margin-bottom: 0px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: left; /* Força o texto a ficar na esquerda */
+            justify-self: start; /* Prende o título no começo da coluna dele */
+        }
+
+        .card-especialidade p {
+            color: #64748B;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+            text-align: justify; /* Deixa o texto reto dos dois lados */
+            grid-column: 1 / span 2;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            grid-column: 1 / span 2; /* Faz o texto e as tags ocuparem as duas colunas do card */
+}
+        
+
+        .tag {
+            background: #F8FAFC;
+            color: #64748B;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* =========================================
+   MODAL ESPECIALIDADES
+   ========================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 99999;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: white;
+    width: 90%;
+    max-width: 650px;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.25);
+
+    position: relative;
+
+    animation: surgir .3s ease;
+}
+
+.modal-box h2 {
+    color: #0F3962;
+    margin-bottom: 20px;
+}
+
+.modal-box p {
+    color: #64748B;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    border: none;
+    background: #EEF2FF;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+#modalImagem{
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+@keyframes surgir {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================================
+   SEÇÃO DE DEPOIMENTOS
+   ========================================= */
+.depoimentos-secao {
+    padding: 80px 20px;
+    background-color: #fafafa; /* Alterna com o fundo do resto do site */
+    text-align: center;
+}
+
+.depoimentos-secao h2 {
+    color: #0F3962;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.depoimentos-subtitulo {
+    color: #64748B;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+.depoimentos-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Garante que fique responsivo em telas menores */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.depoimento-card {
+    background: #fafafa;
+    border-radius: 16px;
+    padding: 40px 30px 30px 30px;
+    width: 320px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    position: relative;
+    text-align: left;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.depoimento-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Detalhe elegante das aspas no topo do card */
+.depoimento-card .aspas {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 60px;
+    color: rgba(15, 57, 98, 0.1);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.depoimento-texto {
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.depoimento-autor {
+    color: #0F3962;
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    font-weight: 700;
+}
+
+.depoimento-tag {
+    font-size: 12px;
+    color: #64748B;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+   CARROSSEL DE ESPECIALISTAS (LOOP INFINITO COM EFEITO HOVER)
+   ========================================= */
+
+.carrossel-reset {
+    padding: 60px 0;
+    background-color: #fafafa;
+    overflow: hidden; 
+}
+
+.carrossel-reset h2 {
+    text-align: center;
+    color: #0F3962; 
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+.slider {
+    width: 100%;
+    overflow: hidden; 
+    padding: 10px 0 30px 0; 
+}
+
+.slide-track {
+    display: flex;
+    gap: 30px; 
+    width: max-content;
+    animation: scroll-infinito 20s linear infinite; 
+}
+
+.slider:hover .slide-track {
+    animation-play-state: paused;
+}
+
+.slide-card {
+    width: 280px;
+    height: 380px; /* Nova altura fixa para o card ficar no formato retrato */
+    position: relative; /* ESSENCIAL: Permite posicionar o texto por cima */
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    flex-shrink: 0; 
+    transition: transform 0.3s ease;
+}
+
+.slide-card:hover {
+    transform: translateY(-5px);
+}
+
+.slide-card img {
+    width: 100%;
+    height: 100%; /* Faz a foto preencher todo o card */
+    object-fit: cover; 
+    object-position: center top; 
+    transition: transform 0.5s ease; /* Prepara o zoom da imagem */
+}
+
+/* Leve zoom na foto quando o mouse passa por cima (como no vídeo) */
+.slide-card:hover img {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   A MÁGICA DO TEXTO SOBREPOSTO (OVERLAY)
+   ========================================= */
+
+.slide-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 20px 20px; /* Mais espaço no topo para o degradê ficar suave */
+    text-align: center;
+    box-sizing: border-box;
+    /* Fundo escuro esfumaçado na base da foto */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+    
+    /* Configuração inicial: escondido e levemente rebaixado */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+/* Quando passar o mouse no card, a informação aparece e sobe suavemente */
+.slide-card:hover .slide-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-info h4 {
+    color: #ffffff; /* Letra branca para contrastar com o fundo escuro */
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+/* Estilizando o <p> para ficar igual à "Etiqueta/Badge" do seu vídeo */
+.slide-info p {
+    display: inline-block;
+    background-color: #0F3962; /* Cor azul do tema (pode alterar se quiser) */
+    color: #ffffff;
+    margin: 0;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* A MÁGICA DO MOVIMENTO */
+@keyframes scroll-infinito {
+    0% { 
+        transform: translateX(0); 
+    }
+    100% { 
+        transform: translateX(calc(-50% - 15px)); 
+    }
+}
+        /* SITE FOOTER */
+        .site-footer {
+            background-color: #0a1931;
+            color: #94A3B8;
+            padding: 60px 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .brand-col {
+            flex: 1.5;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-image {
+            max-width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .brand-col p {
+            line-height: 1.6;
+            font-size: 14px;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #2e3a4e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .contact-col svg {
+            width: 16px;
+            height: 16px;
+            stroke: #3B82F6;
+        }
+/* =========================================
+   BOTÃO FLUTUANTE DO WHATSAPP (AJUSTADO PARA O CHATBOT)
+   ========================================= */
+.whatsapp-flutuante {
+    position: fixed;
+    bottom: 140px; /* <-- AUMENTEI AQUI: Antes era 30px, agora está mais alto */
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    z-index: 9999; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-icone {
+    width: 34px;
+    height: 34px;
+}
+
+.whatsapp-flutuante:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Responsividade para telas menores (celulares) */
+@media (max-width: 768px) {
+    .whatsapp-flutuante {
+        bottom: 90px; /* <-- AUMENTEI AQUI TAMBÉM para celular */
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    .whatsapp-icone {
+        width: 28px;
+        height: 28px;
+    }
+}
+   .chat-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 9999;
+    padding: 0;
+    transition: .3s;
+}
+
+.chat-button:hover{
+    transform: scale(1.08);
+}
+
+/* CABEÇA */
+
+.chat-button::before{
+    content:'';
+    position:absolute;
+    width:65px;
+    height:55px;
+    background:linear-gradient(135deg,#60A5FA,#2563EB);
+    border-radius:18px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    box-shadow:0 10px 25px #2563eb59;
+}
+
+/* ANTENA */
+
+.chat-button::after{
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:#93C5FD;
+    border-radius:50%;
+    top:8px;
+    left:50%;
+    transform:translateX(-50%);
+    box-shadow:0 0 15px #93C5FD;
+}
+
+/* OLHOS */
+
+.chat-button span{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:white;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-14px,-2px);
+    z-index:2;
+}
+
+.chat-button span::after{
+    content:'';
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:white;
+    border-radius:50%;
+    left:20px;
+}
+
+/* FLUTUAR */
+
+@keyframes botFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.chat-button{
+    animation:botFloat 3s ease-in-out infinite;
+}
+
+        .chat-box {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 340px;
+            height: 480px;
+            background: #f4f4f4;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: 0.3s;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-box.active {
+            transform: scale(1);
+        }
+
+        .chat-header {
+            background: #7acaff;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            padding: 10px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .bot { background: #d9edf7; }
+        .user { background: #c8f7c5; margin-left: auto; }
+
+        .chat-input {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            display: flex;
+            gap: 5px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: #7acaff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn {
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            background: #7acaff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVIDADE INTERMEDIÁRIA E MOBILE */
+        @media(max-width: 992px) {
+            header {
+                padding: 20px 40px;
+            }
+            .hero {
+                flex-direction: column;
+                padding: 140px 40px 60px 40px;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-content {
+                max-width: 100%;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+                position: static;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+            .nav-btn {
+                padding: 6px 16px;
+            }
+            .hero {
+                padding: 40px 20px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+            .hero-btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+            .servicos-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-container {
+                flex-direction: column;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+   <!-- =========================================
+HEADER
+========================================= -->
+<header>
+    <div class="logo">
+        <img src="fotos em geral/logosemnome.png" alt="Logo RESET">
+    </div>
+<nav>
+    <a href="saibamais.html"> Sobre</a>
+    <a href="equipe.html" >Equipe</a>
+    <a href="contatp.html">Contato</a>
+     <a href="localidade.html">Localidade</a>
+    <a href="agendamento.html" class="nav-btn">Agendamento</a>
+  </nav>
+    <div class="menu-btn" onclick="abrirMenu()">☰</div>
+</header>
+
+<div class="overlay" id="menuOverlay" onclick="fecharMenu()"></div>
+
+<div class="sidebar" id="menuLateral">
+    <button class="fechar-menu" onclick="fecharMenu()">✕</button>
+
+    <hr> <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleMenu(this)">Para Pacientes <span>▼</span></div>
+        <div class="accordion-content">
+            <a href="equipe.html">Equipe</a>
+            <a href="#">Planos e Convênios</a>
+            <a href="contatp.html">Contato</a>
+            <a href="agendamento.html">Agendamento</a>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleMenu(this)">Para Médicos <span>▼</span></div>
+        <div class="accordion-content">
+            <a href="testedajulia.html">Dashboard</a>
+            <a href="testedajulia.html">Prontuário Digital</a>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleMenu(this)">A Clínica <span>▼</span></div>
+        <div class="accordion-content">
+            <a href="saibamais.html">Sobre</a>
+            <a href="localidade.html">Localização</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <section class="hero">
+        <div class="hero-content">
+          <span class="hero-label">Centro de Apoio à Ludopatia</span>
+            <h1>Sua nova versão começa hoje.</h1>
+            <p class="descricao">
+                A Reset é um centro de apoio que oferece acolhimento e acompanhamento especializado, para pessoas que 
+                enfrentam a <a href="Depressão.html" style="color: #4a7fa7; font-weight: bold; text-decoration: underline;">ludopatia</a> e desejam retomar o controle da própria vida!
+            </p>
+            <div class="hero-buttons">
+                <a href="agendamento.html" class="hero-btn-primary">Preciso de ajuda</a>
+                <a href="saibamais.html" class="hero-btn-secondary">Saiba mais</a>
+            </div>
+            <div class="hero-pacientes">
+    <img src="fotos/Bruno.jpg" alt="">
+    <img src="fotos/Hellen.jpeg" alt="">
+    <img src="fotos/emily.jpeg" alt="">
+    <img src="fotos/AnaAlice.jpg" alt="">
+
+    <div class="pacientes-texto">
+        <strong>+500 pacientes</strong>
+        <span>confiam na RESET</span>
+    </div>  
+</div>
+        </div>
+        
+        <div class="hero-image">
+            <div class="slideshow-calmo">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Paisagem Calma 1">
+                <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=800&q=80" alt="Paisagem Calma 2">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Paisagem Calma 3">
+                <img src="fotos em geral/sofa.avif" alt="Paisagem Calma 4">
+            
+            </div>
+        </div>
+    </section>
+
+<!-- =========================================
+TERÇA DO RECOMEÇO
+========================================= -->
+
+<section class="terca-recomeco">
+
+    <div class="terca-container">
+
+        <div class="terca-info">
+
+            <span class="terca-badge">
+                💙 Toda terça-feira
+            </span>
+
+            <h2>Terça do Recomeço</h2>
+
+            <div class="terca-aviso">
+                SOMENTE ÀS TERÇAS • VAGAS LIMITADAS
+            </div>
+
+            <p>
+                Acreditamos que o cuidado emocional deve estar ao alcance de todos.
+                Por isso, toda terça-feira oferecemos atendimentos avulsos com
+                valores especiais para quem deseja dar o primeiro passo em direção
+                a uma vida mais equilibrada.
+            </p>
+
+            <div class="terca-dados">
+
+                <div class="dado">
+                    <strong>+500</strong>
+                    <span>Pacientes atendidos</span>
+                </div>
+
+                <div class="dado">
+                    <strong>100%</strong>
+                    <span>Atendimento humanizado</span>
+                </div>
+
+            </div>
+
+            <a href="agendamento.html" class="btn-terca">
+                Agendar Atendimento
+            </a>
+
+        </div>
+
+        <div class="terca-imagem">
+            <img src="fotos em geral/DENTRO DA RESET.png" alt="Atendimento terapêutico">
+        </div>
+
+    </div>
+
+    <div class="terca-precos">
+
+        <div class="terca-card">
+         <div class="icon-box icon-orange">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 0 20c1.1 0 2-.9 2-2 0-.6-.2-1.1-.6-1.5-.4-.4-.6-.9-.6-1.5 0-1.1.9-2 2-2h1a5 5 0 0 0 0-10H12z"/>
+            <circle cx="7.5" cy="10.5" r="1"/>
+            <circle cx="12" cy="7.5" r="1"/>
+            <circle cx="16.5" cy="10.5" r="1"/>
+        </svg>
+    </div>
+            <h3>Arteterapia</h3>
+            <p>Encontro individual</p>
+            <strong>R$ 184,00</strong>
+        </div>
+
+        <div class="terca-card">
+        <div class="icon-box icon-red">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2"/>
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M6 12h.01"/>
+            <path d="M18 12h.01"/>
+        </svg>
+    </div>
+            <h3>Educação Financeira</h3>
+            <p>Encontro individual</p>
+            <strong>R$ 184,00</strong>
+        </div>
+
+        <div class="terca-card">
+           <div class="icon-box icon-green">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="2"/>
+            <path d="M12 7v4"/>
+            <path d="M8 11l4 2 4-2"/>
+            <path d="M9 22l3-6 3 6"/>
+            <path d="M6 16h12"/>
+        </svg>
+    </div>
+            <h3>Yoga</h3>
+            <p>Aula individual</p>
+            <strong>R$ 184,00</strong>
+        </div>
+
+        <div class="terca-card destaque">
+           <div class="icon-box icon-pink">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 20V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v16"/>
+            <path d="M2 20h20"/>
+            <path d="M10 8h4"/>
+            <path d="M10 12h4"/>
+        </svg>
+    </div>
+            <h3>Psicologia</h3>
+            <p>Sessão individual</p>
+            <strong>R$ 230,00</strong>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="planos" class="planos-section">
+
+    <div class="section-header" style="margin: 0 auto 50px; text-align: center;">
+        <span class="section-label">Invista em você</span>
+        <h2>Conheça nossos planos</h2>
+        <p>
+            Todos os planos oferecem acesso completo a 9 encontros mensais:
+            2 aulas de Ateliê,
+            2 de Ed. Financeira,
+            3 aulas de Yoga
+            e 2 sessões de Psicólogo.
+        </p>
+    </div>
+
+    <div class="planos-grid">
+
+        <div class="card-plano">
+            <div class="tipo-plano">Plano Semestral</div>
+            <div class="economia-tag">15% de Desconto</div>
+            
+            <div class="plano-preco-novo">
+                <div class="parcelado">
+                    <span class="parcelas">6x</span>
+                    <div>
+                        <span class="valor-parcela">R$ 1.530</span>
+                        <span class="centavos">,00</span>
+                    </div>
+                </div>
+                <div class="valor-a-vista">ou R$ 9.180,00 à vista</div>
+            </div>
+
+            <ul class="lista-beneficios">
+                <li>2 Aulas de Ateliê por mês</li>
+                <li>2 Aulas de Educação Financeira</li>
+                <li>2 Sessões de Psicólogo individual</li>
+                <li>3 Aulas de Yoga por mês</li>
+                <li>Acesso prioritário a eventos</li>
+            </ul>
+
+            <a href="https://resetclinica-ludopatia.base44.app/login" class="btn-plano">
+                Assinar Semestral
+            </a>
+        </div>
+
+        <div class="card-plano plano-destaque">
+            <div class="plano-preco-novo">
+                <div class="tipo-plano">Plano Mensal</div>
+                <div class="economia-tag">5% de Desconto</div>
+                
+                <div class="parcelado">
+                    <div>
+                        <span class="valor-parcela">R$ 1.615</span>
+                        <span class="centavos">,00</span>
+                    </div>
+                </div>
+                <div class="valor-a-vista">Valor mensal recorrente</div>
+            </div>
+
+            <ul class="lista-beneficios">
+                <li>2 Aulas de Ateliê por mês</li>
+                <li>2 Aulas de Educação Financeira</li>
+                <li>2 Sessões com Psicólogo individual</li>
+                <li>3 Aulas de Yoga por mês</li>
+            </ul>
+
+            <a href="https://resetclinica-ludopatia.base44.app/login" class="btn-plano primario">
+                Assinar Mensal
+            </a>
+        </div>
+
+        <div class="card-plano">
+            <div class="plano-preco-novo">
+                <div class="tipo-plano">Plano Anual</div>
+                <div class="economia-tag">20% de Desconto</div>
+
+                <div class="parcelado">
+                    <span class="parcelas">12x</span>
+                    <div>
+                        <span class="valor-parcela">R$ 1.360</span>
+                        <span class="centavos">,00</span>
+                    </div>
+                </div>
+                <div class="valor-a-vista">ou R$ 16.320,00 à vista</div>
+            </div>
+
+            <ul class="lista-beneficios">
+                <li>2 Aulas de Ateliê por mês</li>
+                <li>2 Aulas de Educação Financeira</li>
+                <li>2 Sessões com Psicólogo individual</li>
+                <li>3 Aulas de Yoga por mês</li>
+                <li>Acesso a emergência emocional</li>
+                <li>Maior economia para o tratamento</li>
+                <li>Acesso prioritário a eventos</li>
+            </ul>
+
+            <a href="https://resetclinica-ludopatia.base44.app/login" class="btn-plano">
+                Assinar Anual
+            </a>
+        </div>
+
+    </div>
+</section>
+ <!-- MODAL DAS ESPECIALIDADES -->
+<div class="modal-overlay" id="modalOverlay" onclick="fecharModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+
+        <button class="modal-close" onclick="fecharModal()">✕</button>
+
+        <h2 id="modalTitulo"></h2>
+
+        <img id="modalImagem" src="" alt="Especialidade">
+
+        <p id="modalTexto"></p>
+
+    </div>
+</div>
+    <section id="servicos" class="servicos">
+        <div class="section-header">
+            <span class="section-label">NOSSOS SERVIÇOS</span>
+            <h2>Especialidades</h2>
+            <p>Cuidado completo para sua saúde emocional com profissionais especializados.</p>
+            <P><b>Clique abaixo e descubra um pouco mais sobre como funciona os nossos atendimentos e quais sintomas indicam aquele cuidado.</b></P>
+        </div>
+
+        <div class="servicos-grid">
+    <div class="card-especialidade"
+    onclick="abrirModal('Arteterapia com Doutora Alice',
+    'A arteterapia utiliza recursos artísticos como pintura, desenho, colagem e outras formas de <strong>expressão criativa</strong> para auxiliar no <strong>autoconhecimento</strong>, na comunicação de emoções e no <strong>fortalecimento emocional</strong>. Se encaixa para quem sofre de <a href=\'ansiedade.html\' style=\'color: #4a7fa7; font-weight: bold; text-decoration: underline;\'>ansiedade</a> e <a href=\'Ansiedade.html\' style=\'color: #4a7fa7; font-weight: bold; text-decoration: underline;\'>Abstinência à jogos.</a>. A Doutora Alice, especializada em arteterapia, ensina nossos alunos que a arte também ajuda a mente a se fortalecer.',
+    'fotos/alicedese nhoofc.png',
+    '100%',
+    '300px'
+    )">
+    
+    <div class="icon-box icon-orange">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 0 20c1.1 0 2-.9 2-2 0-.6-.2-1.1-.6-1.5-.4-.4-.6-.9-.6-1.5 0-1.1.9-2 2-2h1a5 5 0 0 0 0-10H12z"/>
+            <circle cx="7.5" cy="10.5" r="1"/>
+            <circle cx="12" cy="7.5" r="1"/>
+            <circle cx="16.5" cy="10.5" r="1"/>
+        </svg>
+    </div>
+    <h3>Arteterapia</h3>
+    <p>Expressão emocional através da arte, criatividade e desenvolvimento pessoal.</p>
+</div>
+<div class="card-especialidade"
+      onclick="abrirModal('Yoga com Professora Júlia',
+                'As aulas de Yoga ajudam no <strong>equilíbrio emocional</strong>, <strong>redução da ansiedade</strong> e melhora da qualidade de vida. Perfeito para <strong>respirar e se esvaziar</strong> um pouco da rotina pesada e o Vício que faz cair na <a href=\'Jogatina.html\' style=\'color: #4a7fa7; font-weight: bold; text-decoration: underline;\'>Jogatina</a>. A professora Júlia, atua ajudando nossos pacientes a relaxarem por completo com meditações e exercicíos físicos.',
+                'fotos/professorayogajulia.png',
+                '100%',
+                '300px'
+                )">
+    <div class="icon-box icon-green">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="2"/>
+            <path d="M12 7v4"/>
+            <path d="M8 11l4 2 4-2"/>
+            <path d="M9 22l3-6 3 6"/>
+            <path d="M6 16h12"/>
+        </svg>
+    </div>
+    <h3>Yoga</h3>
+    <p>Práticas de respiração, alongamento e equilíbrio para saúde física e mental.</p>
+</div>
+
+            <div class="card-especialidade"
+            onclick="abrirModal('Educação Finaceira com Doutora Hellen',
+                'A Educação Financeira auxilia os pacientes na reconstrução da relação com o dinheiro, promovendo <strong>organização</strong>, <strong>planejamento e tomada de decisões mais conscientes.</strong> O acompanhamento busca desenvolver hábitos financeiros saudáveis, prevenir <a href=\'comportamentos impulsivos.html\' style=\'color: #4a7fa7; font-weight: bold; text-decoration: underline;\'>Comportamentos Impulsivos</a>. e fortalecer a <strong>autonomia financeira</strong>. Os alunos tem aulas e palestras com a Doutora Hellen, especializada em Educação Finaceira.',
+                'fotos/hellen administradora desenho.png',
+                '100%',
+                '300px'
+                )">
+    <div class="icon-box icon-red">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2"/>
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M6 12h.01"/>
+            <path d="M18 12h.01"/>
+        </svg>
+    </div>
+    <h3>Educação Financeira</h3>
+    <p>Orientação para planejamento financeiro, organização e hábitos saudáveis com o dinheiro.</p>
+</div>
+
+           <div class="card-especialidade"
+           onclick="abrirModal('Administração geral da empresa com o Sr. Kaiky',
+                'A área de Administração é responsável pela organização e pelo funcionamento estratégico da RESET. Atua no gerenciamento de processos, recursos e serviços, garantindo que todas as atividades sejam realizadas com eficiência, qualidade e compromisso, proporcionando uma experiência acolhedora e segura para pacientes, familiares e colaboradores.',
+                'fotos/kaikydesenho.png',
+                '100%',
+                '300px'
+                )">
+    <div class="icon-box icon-blue">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M8 16V8"/>
+            <path d="M12 16V11"/>
+            <path d="M16 16V6"/>
+        </svg>
+    </div>
+    <h3>Administração</h3>
+    <p>Gestão administrativa, organização de processos e apoio estratégico para o funcionamento da instituição.</p>
+</div>
+
+            <div class="card-especialidade"
+            onclick="abrirModal('Bem estar Corporativo com o Yan',
+               'O Bem-Estar Corporativo oferece ações voltadas para a promoção da saúde emocional e da qualidade de vida no ambiente de trabalho. Por meio de toda a organização e atividades da empresa, o nosso atendente Yan cuida de toda recepção dos nossos clientes. Oferecendo sempre um ambiente produtivo e equilibrado.',
+                'fotos/yan desenho ofc.png',
+                '100%',
+                '300px'
+                )">
+                <div class="icon-box icon-dark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                        <path d="M9 22v-4h6v4" />
+                        <path d="M8 6h.01" />
+                        <path d="M16 6h.01" />
+                        <path d="M12 6h.01" />
+                        <path d="M12 10h.01" />
+                        <path d="M12 14h.01" />
+                        <path d="M16 10h.01" />
+                        <path d="M16 14h.01" />
+                        <path d="M8 10h.01" />
+                        <path d="M8 14h.01" />
+                    </svg>
+                </div>
+                <h3>Bem-estar Corporativo</h3>
+                <p>Programas empresariais de saúde emocional no trabalho.</p>
+            </div>
+            <div class="card-especialidade"
+            onclick="abrirModal('Sessões de Pisicologia com a Doutora Emily',
+               'O atendimento psicológico para adultos é voltado ao <strong>desenvolvimento emocional</strong>, ao <strong>autoconhecimento</strong> e ao <strong>fortalecimento da saúde mental</strong>. As sessões oferecem um espaço seguro e acolhedor para lidar com desafios como <a href=\'Depressao.html\' style=\'color: #4a7fa7; font-weight: bold; text-decoration: underline;\'>Depressão</a>. , <a href=\'Depressão.html\' style=\'color: #4a7fa7; font-weight: bold; text-decoration: underline;\'>Distúrbios e compulsões alimentares</a>. . Auxiliando na construção de estratégias para uma vida mais equilibrada, consciente e satisfatória.',
+                'fotos/emilydesenho.png',
+                '100%',
+                '300px'
+                )">
+    <div class="icon-box icon-pink">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 20V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v16"/>
+            <path d="M2 20h20"/>
+            <path d="M10 8h4"/>
+            <path d="M10 12h4"/>
+        </svg>
+    </div>
+    <h3>Pisicologia</h3>
+    <p>Atendimento voltado para autoconhecimento, propósito, carreira e fortalecimento emocional na vida adulta.</p>
+</div>
+        </div>
+    </section>
+
+   <section class="depoimentos-secao">
+  <h2>O que dizem sobre nós</h2>
+  <p class="depoimentos-subtitulo">Histórias reais de superação e recomeço dentro da nossa comunidade.</p>
+
+  <div class="depoimentos-container">
+    
+    <div class="depoimento-card">
+      <div class="aspas">“</div>
+      <p class="depoimento-texto">A Reset me devolveu o controle da minha vida. O acolhimento e o direcionamento dos profissionais foram fundamentais para o meu processo de recuperação.</p>
+      <h4 class="depoimento-autor">Mauro Fernandes</h4>
+      <span class="depoimento-tag">Paciente</span>
+    </div>
+    
+    <div class="depoimento-card">
+      <div class="aspas">“</div>
+      <p class="depoimento-texto">Como familiar, ver a evolução e o suporte contínuo oferecido pelo centro trouxe de volta a paz que nossa família precisava. Eternamente grata.</p>
+      <h4 class="depoimento-autor">Ana Paula</h4>
+      <span class="depoimento-tag">Familiar</span>
+    </div>
+
+
+    <div class="depoimento-card">
+      <div class="aspas">“</div>
+      <p class="depoimento-texto">Encontrar um lugar especializado em ludopatia fez toda a diferença. Senti que não estava mais sozinho e que existia um caminho real para o recomeço.</p>
+      <h4 class="depoimento-autor">Fernanda Silva</h4>
+      <span class="depoimento-tag">Paciente</span>
+    </div>
+
+  
+  </div>
+</section>
+
+<section class="carrossel-reset">
+
+  <h2>Um pouco dos nossos profissionais!</h2>
+
+  <div class="slider">
+    <div class="slide-track">
+
+      <div class="slide-card">
+          <img src="fotos/emilydesenho.png" alt="Dra. Emily">
+          <div class="slide-info">
+              <h4>Dra. Emily</h4>
+              <p>Pisicologia clinica</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/alicedese nhoofc.png" alt="Dra. Alice">
+          <div class="slide-info">
+              <h4>Dra. Alice</h4>
+              <p>Arte terapêuta</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/professorayogajulia.png" alt="Prof. Júlia">
+          <div class="slide-info">
+              <h4>Prof. Júlia</h4>
+              <p>Professora de Yoga</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/hellen administradora desenho.png" alt="Dra. Hellen">
+          <div class="slide-info">
+              <h4>Dra. Hellen</h4>
+              <p>Educadora finaceira</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/kaikydesenho.png" alt="Sr. Kaiky">
+          <div class="slide-info">
+              <h4>Sr. Kaiky</h4>
+              <p>Administrador da Empresa</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/yan desenho ofc.png" alt="Yan">
+          <div class="slide-info">
+              <h4>Yan</h4>
+              <p>Atendente</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/emilydesenho.png" alt="Dra. Emily">
+          <div class="slide-info">
+              <h4>Dra. Emily</h4>
+              <p>Pisicologia clinica</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/alicedese nhoofc.png" alt="Dra. Alice">
+          <div class="slide-info">
+              <h4>Dra. Alice</h4>
+              <p>Arte terapêuta</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/professorayogajulia.png" alt="Prof. Júlia">
+          <div class="slide-info">
+              <h4>Professora Júlia</h4>
+              <p>Professora de Yoga</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/hellen administradora desenho.png" alt="Dra. Hellen">
+          <div class="slide-info">
+              <h4>Dra. Hellen</h4>
+              <p>Educadora finaceira</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/kaikydesenho.png" alt="Sr. Kaiky">
+          <div class="slide-info">
+              <h4>Sr. Kaiky</h4>
+              <p>Administrador da Empresa</p>
+          </div>
+      </div>
+
+      <div class="slide-card">
+          <img src="fotos/yan desenho ofc.png" alt="Yan">
+          <div class="slide-info">
+              <h4>Yan</h4>
+              <p>Atendente</p>
+          </div>
+      </div>
+
+
+    </div>
+  </div></section>
+
+    <footer class="site-footer" id="contato">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="fotos em geral/Centro De Apoio a Ludopatia (2).png" alt="Logo da Empresa" class="footer-logo-image">
+                </div>
+                <p>Sua nova versão começa hoje. Cuidado emocional com tecnologia e humanidade.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="Cabeca.html">Home</a></li>
+                    <li><a href="#servicos">Especialidades</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="equipe.html">Equipe</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>SERVIÇOS</h4>
+                <ul>
+                    <li><a href="#">Psicologia Clínica</a></li>
+                    <li><a href="#">Psiquiatria</a></li>
+                    <li><a href="#">Terapia Familiar</a></li>
+                    <li><a href="#">Emergência Emocional</a></li>
+                    <li><a href="#">Bem-estar Corporativo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>CONTATO</h4>
+                <ul>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        (21) 99876-5432
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        centrodeapoioreset@gmail.com
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Estr. do Pontal, 2327 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-877
+                    </li>
+                   <a href="https://www.instagram.com/clinica.reset_/" target="_blank">
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                   <path d="M16 11.37a4 4 0 1 1-2.83-3.46 4 4 0 0 1 2.83 3.46z"></path>
+                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                   </svg>
+                    @clinica.reset_
+                   </a> 
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 RESET — Centro Integrado de Apoio e Saúde Mental</p>
+            <p>Feito com <span style="color:#3B82F6;">💙</span> para seu bem-estar</p>
+        </div>
+    </footer>
+
+     
+<a href="https://wa.me/5521972595866" class="whatsapp-flutuante" target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp">
+  <svg viewBox="0 0 32 32" class="whatsapp-icone">
+    <path d="M16 2a13.93 13.93 0 0 0-12.09 6.94A13.84 13.84 0 0 0 2.2 21.64L.05 29.5a1 1 0 0 0 1.27 1.23l7.73-2.22a13.83 13.83 0 0 0 7 .86A13.93 13.93 0 0 0 16 2zm0 25.68a11.9 11.9 0 0 1-6-.7l-.42-.23-4.43 1.27 1.24-4.52-.25-.44a11.85 11.85 0 0 1 1.74-13.43 11.92 11.92 0 0 1 16.85 0A11.87 11.87 0 0 1 16 27.68z" fill="#fff"/>
+    <path d="M21.75 18.25c-.32-.16-1.89-.93-2.18-1s-.51-.12-.72.2-1 1.21-1.22 1.45-.44.27-.76.1a9.58 9.58 0 0 1-2.83-1.75 10.56 10.56 0 0 1-2-2.43c-.22-.36 0-.54.14-.73s.32-.36.48-.55.21-.32.32-.53a.59.59 0 0 0 0-.55c-.05-.12-.72-1.73-1-2.4-.27-.65-.54-.56-.72-.57h-.62a1.18 1.18 0 0 0-.85.4 3.61 3.61 0 0 0-1.13 2.68 6.27 6.27 0 0 0 1.31 3.34 14.33 14.33 0 0 0 5.49 4.85c3 .17 3.63-.1 4.35-.17a3.7 3.7 0 0 0 2.45-1.73 3 3 0 0 0 .21-1.72c-.11-.15-.43-.31-.75-.47z" fill="#fff"/>
+  </svg>
+</a>
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">Reset • Apoio à Ludopatia</div>
+        <div class="chat-messages" id="messages">
+
+            <div class="message bot">
+                Olá, eu sou o assistente da Reset 💙<br><br>
+                Estou aqui para te ouvir e ajudar com questões relacionadas ao jogo compulsivo.
+            </div>
+            <div class="message bot">Você está buscando ajuda para você ou para alguém próximo?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Escreva aqui...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+   
+    </div> 
+    <button class="chat-button" onclick="toggleChat()">
+    <span></span>
+</button>
+
+    <script>
+
+
+    // Funções para abrir e fechar a barra lateral
+    function abrirMenu() {
+        document.getElementById("menuLateral").classList.add("aberta");
+        document.getElementById("menuOverlay").classList.add("ativo");
+    }
+
+    function fecharMenu() {
+        document.getElementById("menuLateral").classList.remove("aberta");
+        document.getElementById("menuOverlay").classList.remove("ativo");
+    }
+    function toggleMenu(element) {
+    const content = element.nextElementSibling;
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+}
+
+    //código do chatbot
+function toggleChat() {
+    const chat = document.getElementById("chatBox");
+    chat.classList.toggle("active");
+}
+
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    const text = input.value.trim();
+
+    if (text === "") return;
+
+    addMessage(text, "user");
+
+    input.value = "";
+
+    setTimeout(() => {
+        botResponse(text);
+    }, 700);
+}
+
+function addMessage(text, type) {
+
+    const msgContainer = document.getElementById("messages");
+
+    const msg = document.createElement("div");
+
+    msg.classList.add("message", type);
+
+    msg.innerHTML = text;
+
+    msgContainer.appendChild(msg);
+
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+}
+
+function abrirModal(titulo, texto, imagem, largura="100%", altura="250px") {
+
+    document.getElementById("modalTitulo").innerHTML = titulo;
+
+    document.getElementById("modalTexto").innerHTML = texto;
+
+    const img = document.getElementById("modalImagem");
+    img.src = imagem;
+      img.style.width = largura;
+    img.style.height = altura;
+    img.style.objectFit = "contain";
+
+    document.getElementById("modalOverlay").classList.add("active");
+}
+
+function fecharModal() {
+    document.getElementById("modalOverlay").classList.remove("active");
+}
+
+function botResponse(userText) {
+
+    let text = userText.toLowerCase();
+    let response = "";
+
+    // =====================================
+    // SAUDAÇÕES
+    // =====================================
+
+    if (
+        text.includes("oi") ||
+        text.includes("olá") ||
+        text.includes("ola") ||
+        text.includes("bom dia") ||
+        text.includes("boa tarde") ||
+        text.includes("boa noite")
+    ) {
+
+        response = `
+        Olá 💙<br><br>
+
+        Eu sou a Aurora Assist, assistente virtual da Reset.<br><br>
+
+        Posso ajudar você com:
+        <br>• Informações sobre tratamentos
+        <br>• Ludopatia (vício em apostas)
+        <br>• Psicologia
+        <br>• Arteterapia
+        <br>• Yoga
+        <br>• Educação Financeira
+        <br>• Agendamentos
+        <br>• Planos disponíveis
+        <br>• Funcionamento da clínica
+        <br>• Navegação pelo site
+        `;
+    }
+
+    // =====================================
+    // AJUDA PARA SI MESMO
+    // =====================================
+
+    else if (
+        text.includes("para mim") ||
+        text.includes("preciso de ajuda") ||
+        text.includes("eu preciso") ||
+        text.includes("sou eu")
+    ) {
+
+        response = `
+        Procurar ajuda já é um passo muito importante 💙<br><br>
+
+        A Reset possui profissionais especializados no tratamento da ludopatia e outros comportamentos compulsivos.<br><br>
+
+        Você pode conhecer nossos tratamentos ou realizar um agendamento inicial.
+        `;
+    }
+
+    // =====================================
+    // AJUDA PARA TERCEIROS
+    // =====================================
+
+    else if (
+        text.includes("amigo") ||
+        text.includes("irmão") ||
+        text.includes("irmao") ||
+        text.includes("pai") ||
+        text.includes("mãe") ||
+        text.includes("mae") ||
+        text.includes("esposo") ||
+        text.includes("esposa") ||
+        text.includes("alguém")
+    ) {
+
+        response = `
+        Muitas vezes os familiares são os primeiros a perceber os sinais do problema.<br><br>
+
+        A Reset também oferece orientação para familiares e pessoas próximas que desejam ajudar alguém que enfrenta dificuldades com apostas ou outros comportamentos compulsivos.
+        `;
+    }
+
+    // =====================================
+    // LUDOPATIA
+    // =====================================
+
+    else if (
+        text.includes("ludopatia") ||
+        text.includes("aposta") ||
+        text.includes("apostas") ||
+        text.includes("bet") ||
+        text.includes("cassino") ||
+        text.includes("jogo")
+    ) {
+
+        response = `
+        A ludopatia é um transtorno caracterizado pela perda de controle sobre jogos e apostas.<br><br>
+
+        Alguns sinais incluem:
+        <br>• Necessidade de apostar cada vez mais
+        <br>• Tentativas frustradas de parar
+        <br>• Mentiras sobre apostas
+        <br>• Problemas financeiros
+        <br>• Ansiedade quando não consegue jogar
+        <br><br>
+
+        A Reset oferece acompanhamento especializado para auxiliar na recuperação e na construção de hábitos saudáveis.
+        `;
+    }
+
+    // =====================================
+    // PSICOLOGIA
+    // =====================================
+
+    else if (
+        text.includes("psicologia") ||
+        text.includes("psicólogo") ||
+        text.includes("psicologo") ||
+        text.includes("terapia")
+    ) {
+
+        response = `
+        A Reset oferece acompanhamento psicológico especializado para adultos (+18 anos).<br><br>
+
+        Nosso objetivo é auxiliar no desenvolvimento do autocontrole, fortalecimento emocional e construção de hábitos saudáveis, contribuindo para uma vida mais equilibrada e saudável.
+        `;
+    }
+
+    // =====================================
+    // ARTETERAPIA
+    // =====================================
+
+    else if (
+        text.includes("arteterapia") ||
+        text.includes("arte terapia") ||
+        text.includes("arte")
+    ) {
+
+        response = `
+        🎨 A Arteterapia utiliza atividades artísticas como ferramenta terapêutica.<br><br>
+
+        Ela auxilia na expressão de emoções, autoconhecimento, criatividade e desenvolvimento pessoal, contribuindo para o processo de recuperação e bem-estar emocional.
+        `;
+    }
+
+    // =====================================
+    // YOGA
+    // =====================================
+
+    else if (
+        text.includes("yoga")
+    ) {
+
+        response = `
+        🧘 As aulas de Yoga da Reset auxiliam no controle da ansiedade, redução do estresse e fortalecimento do equilíbrio emocional.<br><br>
+
+        As práticas são adaptadas para promover bem-estar físico e mental.
+        `;
+    }
+
+    // =====================================
+    // EDUCAÇÃO FINANCEIRA
+    // =====================================
+
+    else if (
+        text.includes("educação financeira") ||
+        text.includes("educacao financeira") ||
+        text.includes("financeira") ||
+        text.includes("finanças") ||
+        text.includes("financas")
+    ) {
+
+        response = `
+        💰 A Educação Financeira ajuda na reorganização da vida financeira e no desenvolvimento de hábitos mais saudáveis relacionados ao dinheiro.<br><br>
+
+        O objetivo é promover autonomia, planejamento e maior segurança financeira.
+        `;
+    }
+
+    // =====================================
+    // ESPECIALIDADES
+    // =====================================
+
+    else if (
+        text.includes("especialidade") ||
+        text.includes("especialidades") ||
+        text.includes("serviços") ||
+        text.includes("servicos") ||
+        text.includes("atendimentos") ||
+        text.includes("o que vocês oferecem") ||
+        text.includes("o que voces oferecem")
+    ) {
+
+        response = `
+        A Reset oferece um atendimento multidisciplinar voltado para o bem-estar e a recuperação dos pacientes 💙<br><br>
+
+        Nossas especialidades incluem:
+        <br><br>
+
+        🧠 <b>Psicologia para Adultos (+18)</b>
+        <br>Acompanhamento terapêutico individual.
+        <br><br>
+
+        🎨 <b>Arteterapia</b>
+        <br>Expressão emocional através da arte.
+        <br><br>
+
+        🧘 <b>Aulas de Yoga</b>
+        <br>Relaxamento e equilíbrio emocional.
+        <br><br>
+
+        💰 <b>Educação Financeira</b>
+        <br>Organização financeira e reconstrução de hábitos saudáveis.
+        `;
+    }
+
+    // =====================================
+    // TRATAMENTOS
+    // =====================================
+
+    else if (
+        text.includes("tratamento") ||
+        text.includes("tratamentos")
+    ) {
+
+        response = `
+        A Reset trabalha com uma abordagem integrada e humanizada 💙<br><br>
+
+        O tratamento pode incluir:
+        <br><br>
+
+        🧠 Psicologia para adultos
+        <br>🎨 Arteterapia
+        <br>🧘 Aulas de Yoga
+        <br>💰 Educação Financeira
+        <br>🕶️ Recursos de Realidade Virtual
+        <br><br>
+
+        Cada plano terapêutico é desenvolvido de acordo com as necessidades individuais de cada paciente.
+        `;
+    }
+
+    // =====================================
+    // PLANOS
+    // =====================================
+
+    else if (
+        text.includes("plano") ||
+        text.includes("planos") ||
+        text.includes("preço") ||
+        text.includes("preco") ||
+        text.includes("valor")
+    ) {
+
+        response = `
+        Você pode consultar todos os planos diretamente na seção "Planos" do site.<br><br>
+
+        Lá estão disponíveis as modalidades de atendimento e os benefícios de cada plano.
+        `;
+    }
+
+    // =====================================
+    // AGENDAMENTO
+    // =====================================
+
+    else if (
+        text.includes("agendar") ||
+        text.includes("consulta") ||
+        text.includes("marcar")
+    ) {
+
+        response = `
+        Você pode realizar seu agendamento de forma rápida através da nossa plataforma 💙<br><br>
+
+        <button onclick="window.location.href='agendamento.html'"
+        style="
+        margin-top:10px;
+        padding:10px 20px;
+        border:none;
+        border-radius:8px;
+        background:#2563eb;
+        color:white;
+        cursor:pointer;
+        font-weight:600;">
+        Agendar Consulta
+        </button>
+        `;
+    }
+
+    // =====================================
+    // REALIDADE VIRTUAL
+    // =====================================
+
+    else if (
+        text.includes("vr") ||
+        text.includes("realidade virtual") ||
+        text.includes("imersão") ||
+        text.includes("imersao")
+    ) {
+
+        response = `
+        🕶️ A Reset utiliza recursos de Realidade Virtual como ferramenta complementar de apoio terapêutico.<br><br>
+
+        A experiência imersiva auxilia no desenvolvimento emocional e torna o processo terapêutico ainda mais interativo.
+        `;
+    }
+
+    // =====================================
+    // LOCALIZAÇÃO
+    // =====================================
+
+    else if (
+        text.includes("onde fica") ||
+        text.includes("endereço") ||
+        text.includes("endereco") ||
+        text.includes("localização") ||
+        text.includes("localizacao")
+    ) {
+
+        response = `
+        📍 <b>Endereço da Reset:</b><br><br>
+
+        Estr. do Pontal, 2327<br>
+        Recreio dos Bandeirantes<br>
+        Rio de Janeiro - RJ<br>
+        CEP: 22790-877
+        <br><br>
+
+        Para visualizar o mapa e obter rotas detalhadas, acesse a aba <b>Localidade</b> do site.
+        `;
+    }
+
+    // =====================================
+    // HORÁRIO
+    // =====================================
+
+    else if (
+        text.includes("horário") ||
+        text.includes("horario") ||
+        text.includes("funcionamento")
+    ) {
+
+        response = `
+        🕗 Nosso horário de funcionamento é:<br><br>
+
+        Segunda a Sexta-feira<br>
+        Das 08h às 17h<br><br>
+
+        Para mais informações sobre localização e como chegar, acesse a aba <b>Localidade</b> do site.
+        `;
+    }
+
+    // =====================================
+    // CONTATO
+    // =====================================
+
+    else if (
+        text.includes("telefone") ||
+        text.includes("email") ||
+        text.includes("e-mail") ||
+        text.includes("contato") ||
+        text.includes("instagram") ||
+        text.includes("insta") ||
+        text.includes("whatsapp")
+    ) {
+
+        response = `
+        Entre em contato com a Reset 💙<br><br>
+
+        📞 <b>Telefone / WhatsApp:</b> (21) 99876-5432
+        <br><br>
+
+        📧 <b>E-mail:</b> centrodeapoioreset@gmail.com
+        <br><br>
+
+        📸 <b>Instagram:</b> @clinica.reset_
+        <br><br>
+
+        Estamos à disposição para ajudar você.
+        `;
+    }
+
+    // =====================================
+    // CRISE
+    // =====================================
+
+    else if (
+        text.includes("desesperado") ||
+        text.includes("crise") ||
+        text.includes("não consigo parar") ||
+        text.includes("nao consigo parar")
+    ) {
+
+        response = `
+        Entendo que este pode ser um momento difícil.<br><br>
+
+        Buscar ajuda é um passo importante e demonstra coragem.<br><br>
+
+        Nossa equipe está preparada para acolher você e orientar os próximos passos.
+        `;
+    }
+
+    // =====================================
+    // RESPOSTA PADRÃO
+    // =====================================
+
+    else {
+
+        response = `
+        Ainda não compreendi completamente sua pergunta 💙<br><br>
+
+        Posso ajudar com:
+        <br>• Ludopatia
+        <br>• Psicologia
+        <br>• Arteterapia
+        <br>• Yoga
+        <br>• Educação Financeira
+        <br>• Tratamentos
+        <br>• Planos
+        <br>• Agendamentos
+        <br>• Contato
+        <br>• Localização
+        `;
+    }
+
+    addMessage(response, "bot");
+}
+</script>
+</body>
+</html>

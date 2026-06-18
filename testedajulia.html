@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset. - Área do Profissional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A56FF;
+            --primary-hover: #003ED2;
+            --bg-gradient: linear-gradient(135deg, #EBF1FA 0%, #C6D8F5 100%);
+            --bg-panel: #F8FAFC;
+            --text-main: #1A1D27;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        .hidden { display: none !important; }
+
+        /* TELA DE LOGIN */
+        .login-card {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .brand-logo { font-size: 32px; font-weight: 800; color: #0A194E; margin-bottom: 30px; }
+        .brand-logo span { color: var(--primary); }
+        .login-card h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .login-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; }
+
+        .input-group { text-align: left; margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(26, 86, 255, 0.1);
+        }
+
+        .input-wrapper .icon-left { position: absolute; left: 16px; color: var(--text-muted); display: flex; align-items: center; }
+        .input-wrapper .icon-right { position: absolute; right: 16px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; }
+
+        .btn-primary {
+            width: 100%; background: var(--primary); color: white; border: none;
+            padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: 0.2s; margin-top: 10px;
+        }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .divider { margin: 24px 0; display: flex; align-items: center; text-align: center; color: var(--text-muted); font-size: 12px; }
+        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border); }
+        .divider:not(:empty)::before { margin-right: .5em; }
+        .divider:not(:empty)::after { margin-left: .5em; }
+
+        .btn-google {
+            width: 100%; background: white; color: var(--text-main); border: 1px solid var(--border);
+            padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 500;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s;
+        }
+
+        /* PAINEL PRINCIPAL */
+        .dashboard-container {
+            background: white; width: 100%; max-width: 1200px; min-height: 750px;
+            border-radius: 24px; box-shadow: 0 30px 80px rgba(0,0,0,0.1); display: flex; overflow: hidden;
+        }
+
+        .sidebar { width: 260px; border-right: 1px solid var(--border); padding: 40px 24px; display: flex; flex-direction: column; justify-content: space-between; }
+        .sidebar-menu { display: flex; flex-direction: column; gap: 8px; margin-top: 40px; }
+        
+        .menu-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    color:var(--text-muted);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    border-radius:12px;
+    transition:.25s;
+    cursor:pointer;
+}
+        
+        .menu-item:hover{
+    transform:translateX(6px);
+} 
+.menu-item.active { background: #EFF6FF; color: var(--primary); font-weight: 600; }
+
+        .menu-logout { color: #EF4444; margin-top: auto; }
+        .menu-logout:hover { background: #FEF2F2; color: #EF4444; }
+
+        .main-content { flex: 1; background: var(--bg-panel); padding: 40px 50px; display: flex; flex-direction: column; gap: 32px; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; }
+        .welcome-box h2 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+        .welcome-box p { color: var(--text-muted); font-size: 14px; }
+        
+        .profile-menu { display: flex; align-items: center; gap: 12px; background: white; padding: 8px 16px; border-radius: 50px; box-shadow: var(--card-shadow); font-size: 14px; font-weight: 600; }
+        .profile-pic{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#E2E8F0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--primary);
+    font-weight:bold;
+    transition:.3s;
+}
+
+        /* CARDS DE METRICAS */
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .card-metric {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.card-metric:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(26,86,255,.15);
+}
+        .card-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .icon-blue { background: #E0E7FF; color: var(--primary); }
+        .icon-purple { background: #F3E8FF; color: #7C3AED; }
+        .icon-orange { background: #FFEDD5; color: #EA580C; }
+        .card-info span { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
+        .card-info h3 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+        .card-info p { font-size: 12px; font-weight: 600; }
+        .text-green { color: #10B981; }
+
+        /* LINHAS DE CONSULTA */
+        .consults-section { display: flex; flex-direction: column; gap: 16px; }
+        .consults-section h3 { font-size: 16px; font-weight: 700; }
+        .consults-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .consult-row { background: white; padding: 16px 24px; border-radius: 16px; box-shadow: var(--card-shadow); display: flex; align-items: center; justify-content: space-between; transition: 0.2s; }
+        .consult-row:hover { transform: translateX(4px); }
+        
+        .patient-profile { display: flex; align-items: center; gap: 16px; }
+        .patient-avatar { width: 40px; height: 40px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; color: var(--primary); }
+        .patient-name { font-size: 15px; font-weight: 600; }
+        .consult-type { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+        
+        .consult-details { display: flex; align-items: center; gap: 32px; }
+        .consult-date { font-size: 14px; color: var(--text-main); font-weight: 500; }
+        .consult-time-badge { background: #EFF6FF; color: var(--primary); padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 700; }
+        .arrow-btn { color: var(--text-muted); cursor: pointer; }
+
+        .btn-danger-logout {
+            background: #EF4444; color: white; border: none; padding: 16px; border-radius: 12px;
+            font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; gap: 10px; transition: 0.2s; margin-top: auto;
+        }
+        .btn-danger-logout:hover { background: #DC2626; }
+
+        .empty-state { text-align: center; padding: 40px; background: white; border-radius: 16px; color: var(--text-muted); font-style: italic; box-shadow: var(--card-shadow); }
+    /* ABA PACIENTES */
+
+.patients-section{
+    display:none;
+    flex-direction:column;
+    gap:20px;
+}
+
+.patients-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:20px;
+}
+
+.patient-card{
+    background:white;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:var(--card-shadow);
+transition: all .3s ease;
+cursor:pointer;
+}
+
+.patient-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+.consultas-table tr{
+    transition:.25s;
+}
+
+.consultas-table tr:hover{
+    transform:scale(1.01);
+}
+
+.patient-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.patient-avatar-big{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:#EFF6FF;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--primary);
+}
+
+.patient-card h4{
+    font-size:18px;
+    margin-bottom:4px;
+}
+
+.patient-card p{
+    font-size:13px;
+    color:var(--text-muted);
+}
+
+.patient-data{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:15px;
+}
+
+.patient-data div{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #F1F5F9;
+    padding-bottom:8px;
+}
+
+.patient-data strong{
+    color:var(--text-main);
+}
+ /* ABA CONSULTAS */
+
+.consultas-page{
+    display:none;
+    flex-direction:column;
+    gap:20px;
+}
+
+.consultas-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.consultas-header h3{
+    font-size:22px;
+    font-weight:700;
+}
+
+.consultas-table{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:var(--card-shadow);
+}
+
+.consultas-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.consultas-table th{
+    background:#EFF6FF;
+    color:var(--primary);
+    padding:16px;
+    text-align:left;
+    font-size:14px;
+}
+
+.consultas-table td{
+    padding:16px;
+    border-bottom:1px solid #F1F5F9;
+    font-size:14px;
+}
+
+.consultas-table tr:hover{
+    background:#F8FAFC;
+}
+
+.status-consulta{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.status-realizada{
+    background:#DCFCE7;
+    color:#15803D;
+}
+
+.status-pendente{
+    background:#FEF3C7;
+    color:#B45309;
+}
+
+.btn-ficha{
+    background:var(--primary);
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.btn-ficha:hover{
+    background:var(--primary-hover);
+}  
+@keyframes fadePage{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.consults-section,
+.patients-section,
+.consultas-page{
+    animation:fadePage .4s ease;
+}
+</style>
+</head>
+<body>
+
+    <div id="viewLogin" class="login-card">
+        <div class="brand-logo">Reset<span>.</span></div>
+        <h2>Entrar</h2>
+        <p>Acesse sua área médica</p>
+
+        <form id="loginForm" onsubmit="realizarLogin(event)">
+            <div class="input-group">
+                <label>Email</label>
+                <div class="input-wrapper">
+                    <span class="icon-left">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </span>
+                    <input type="email" id="loginEmail" placeholder="Digite seu email" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <div class="input-wrapper">
+                    <span class="icon-left">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </span>
+                    <input type="password" id="loginSenha" placeholder="Digite sua senha" required>
+                    <span class="icon-right" onclick="toggleSenhaVisivel()">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Entrar</button>
+        </form>
+
+        <div class="divider">ou continue com</div>
+
+        <button class="btn-google" onclick="alert('Simulação de login social ativo.')">
+            <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/web-24dp/copy_of_web_24dp.png" alt="Google Logo" width="18">
+            Entrar com Google
+        </button>
+    </div>
+
+    <div id="viewDashboard" class="dashboard-container hidden">
+        <aside class="sidebar">
+            <div>
+                <div class="brand-logo">Reset<span>.</span></div>
+                <nav class="sidebar-menu">
+                    <div class="menu-item active" onclick="abrirDashboard(this)">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        Dashboard
+                    </div>
+                    <div class="menu-item" onclick="abrirConsultas(this)">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        Consultas
+                    </div>
+                    <div class="menu-item" onclick="abrirPacientes(this)">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        Pacientes
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="menu-item menu-logout" onclick="fazerLogout()">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Sair
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="welcome-box">
+                    <h2 id="txtBoasVindas">Bem-vindo</h2>
+                    <p>Aqui está sua agenda de hoje.</p>
+                </div>
+                <div class="profile-menu">
+                    <div class="profile-pic" id="avatarIniciais">--</div>
+                    <span id="txtNomeUsuario">Médico</span>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
+            
+
+            <div class="metrics-grid">
+                <div class="card-metric">
+                    <div class="card-icon icon-blue">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="card-info">
+                        <span>Consultas hoje</span>
+                        <h3 id="cardConsultasHoje">0</h3>
+                        <p class="text-green">+20% que ontem</p>
+                    </div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-icon icon-purple">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <div class="card-info">
+                        <span>Pacientes ativos</span>
+                        <h3 id="cardPacientesAtivos">0</h3>
+                        <p class="text-green">+8% este mês</p>
+                    </div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-icon icon-orange">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="card-info">
+                        <span>Consultas pendentes</span>
+                        <h3 id="cardPendentes">0</h3>
+                        <p style="color: #EA580C;">Aguardando</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consults-section">
+                <h3>Consultas de hoje</h3>
+                <div class="consults-list" id="listaAgendamentosDoDia"></div>
+            </div>
+            <div class="patients-section" id="patientsSection">
+
+    <h3>Pacientes cadastrados</h3>
+
+    <div class="patients-grid" id="listaPacientes"></div>
+
+</div>
+ <div class="consultas-page" id="consultasPage">
+
+    <div class="consultas-header">
+        <h3>Planilha de Consultorias</h3>
+    </div>
+
+    <div class="consultas-table">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Especialista</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Humor</th>
+                    <th>Status</th>
+                    <th>Ficha</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabelaConsultas">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+            <button class="btn-danger-logout" onclick="fazerLogout()">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Sair da conta
+            </button>
+        </main>
+    </div>
+
+    <script>
+        const usuariosDB = {
+
+    "julia@reset.com": {
+        senha: "123",
+        nome: "Prof. Julia",
+        papel: "medico",
+        iniciais: "DJ"
+    },
+
+    "emily@reset.com": {
+        senha: "123",
+        nome: "Dra. Emily",
+        papel: "medico",
+        iniciais: "DE"
+    },
+
+    "hellen@reset.com": {
+        senha: "123",
+        nome: "Dra. Hellen",
+        papel: "medico",
+        iniciais: "DH"
+    },
+
+    "alice@reset.com": {
+        senha: "123",
+        nome: "Alice",
+        papel: "medico",
+        iniciais: "AL"
+    },
+
+    "admin@reset.com": {
+        senha: "123",
+        nome: "Administrador",
+        papel: "admin",
+        iniciais: "ADM"
+    }
+};
+
+        let usuarioLogado = null;
+
+        function sementesIniciaisDeDados() {
+
+    let agendamentosAtuais =
+        localStorage.getItem('agendamentosReset_DB');
+
+    if (!agendamentosAtuais) {
+
+        localStorage.setItem(
+            'agendamentosReset_DB',
+            JSON.stringify([])
+        );
+
+    }
+
+}
+        function toggleSenhaVisivel() {
+            const inputSenha = document.getElementById('loginSenha');
+            inputSenha.type = inputSenha.type === 'password' ? 'text' : 'password';
+        }
+
+        function realizarLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const senha = document.getElementById('loginSenha').value;
+
+            const contaEncontrada = usuariosDB[email];
+
+            if (contaEncontrada && contaEncontrada.senha === senha) {
+                usuarioLogado = contaEncontrada;
+                sessionStorage.setItem('sessaoResetProfissional', JSON.stringify(usuarioLogado));
+                
+                document.getElementById('viewLogin').classList.add('hidden');
+                document.getElementById('viewDashboard').classList.remove('hidden');
+                
+                montarPainelDinamico();
+            } else {
+                alert('Acesso negado: E-mail ou senha incorretos.');
+            }
+        }
+
+        function montarPainelDinamico() {
+            if (!usuarioLogado) return;
+
+            document.getElementById('txtBoasVindas').innerText = `Bem-vindo, ${usuarioLogado.nome} `;
+            document.getElementById('txtNomeUsuario').innerText = usuarioLogado.nome;
+            document.getElementById('avatarIniciais').innerText = usuarioLogado.iniciais;
+
+            let todosAgendamentos = JSON.parse(localStorage.getItem('agendamentosReset_DB')) || [];
+            console.log("Todos os agendamentos encontrados:");
+            console.log(todosAgendamentos);
+            let agendamentosFiltrados = [];
+
+            // AGORA COMPARA PERFEITAMENTE: "Dr. Yan" ou "Dra. Julia" ou Admin vêm tudo
+           if (usuarioLogado.papel === "admin") {
+    agendamentosFiltrados = todosAgendamentos;
+    document.getElementById('txtBoasVindas').innerText = `Painel Geral - Central Admin`;
+} else {
+    agendamentosFiltrados = todosAgendamentos.filter(agend => {
+
+        const especialista = (agend.especialista || '')
+            .trim()
+            .toLowerCase();
+
+        const medicoLogado = (usuarioLogado.nome || '')
+            .trim()
+            .toLowerCase();
+
+       return especialista.toLowerCase().trim() === medicoLogado.toLowerCase().trim();
+
+    });
+}
+
+            document.getElementById('cardConsultasHoje').innerText = agendamentosFiltrados.length;
+            document.getElementById('cardPacientesAtivos').innerText = Math.floor(agendamentosFiltrados.length * 2 + 1);
+            document.getElementById('cardPendentes').innerText = Math.floor(agendamentosFiltrados.length / 2);
+
+            const containerLista = document.getElementById('listaAgendamentosDoDia');
+            containerLista.innerHTML = '';
+
+            if (agendamentosFiltrados.length === 0) {
+                containerLista.innerHTML = `<div class="empty-state">Nenhum paciente agendado para o seu perfil no momento.</div>`;
+                return;
+            }
+
+            agendamentosFiltrados.forEach(paciente => {
+                let dataFormata = paciente.data.split('-').reverse().join('/');
+                
+                let markupLinha = `
+                    <div class="consult-row">
+                        <div class="patient-profile">
+                            <div class="patient-avatar">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            </div>
+                            <div>
+                                <div class="patient-name">${paciente.nome}</div>
+                                <div class="consult-type">${paciente.obs || 'Consulta'} ${usuarioLogado.papel === 'admin' ? ' - <b>('+paciente.especialista+')</b>' : ''}</div>
+                            </div>
+                        </div>
+                        <div class="consult-details">
+                            <div class="consult-date">${dataFormata}</div>
+                            <div class="consult-time-badge">${paciente.hora}</div>
+                            <div class="arrow-btn" onclick="alert('Histórico de: ${paciente.nome}\\nHumor: ${paciente.humor}')">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                containerLista.insertAdjacentHTML('beforeend', markupLinha);
+            });
+        }
+
+        function fazerLogout() {
+            sessionStorage.removeItem('sessaoResetProfissional');
+            usuarioLogado = null;
+            document.getElementById('viewDashboard').classList.add('hidden');
+            document.getElementById('viewLogin').classList.remove('hidden');
+            document.getElementById('loginSenha').value = '';
+        }
+
+        window.onload = function() {
+            sementesIniciaisDeDados();
+            const sessaoSalva = sessionStorage.getItem('sessaoResetProfissional');
+            if (sessaoSalva) {
+                usuarioLogado = JSON.parse(sessaoSalva);
+                document.getElementById('viewLogin').classList.add('hidden');
+                document.getElementById('viewDashboard').classList.remove('hidden');
+                montarPainelDinamico();
+            }
+        };
+
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'agendamentosReset_DB') {
+                montarPainelDinamico();
+            }
+        });
+    function abrirPacientes(elemento){
+
+    document.querySelectorAll('.menu-item').forEach(item=>{
+        item.classList.remove('active');
+    });
+
+    elemento.classList.add('active');
+
+    document.querySelector('.metrics-grid').style.display = 'none';
+    document.querySelector('.consults-section').style.display = 'none';
+
+    document.getElementById('consultasPage').style.display = 'none';
+    document.getElementById('patientsSection').style.display = 'flex';
+
+    carregarPacientes();
+}
+function abrirConsultas(elemento){
+
+    document.querySelectorAll('.menu-item').forEach(item=>{
+        item.classList.remove('active');
+    });
+
+    elemento.classList.add('active');
+
+    document.querySelector('.metrics-grid').style.display='none';
+    document.querySelector('.consults-section').style.display='none';
+    document.getElementById('patientsSection').style.display='none';
+
+    document.getElementById('consultasPage').style.display='flex';
+
+    carregarConsultas();
+
+}
+
+function carregarConsultas(){
+
+    let todosAgendamentos =
+        JSON.parse(localStorage.getItem('agendamentosReset_DB')) || [];
+
+    let consultas = [];
+
+    if(usuarioLogado.papel === "admin"){
+
+        consultas = todosAgendamentos;
+
+    }else{
+
+        consultas = todosAgendamentos.filter(item => {
+
+            return (item.especialista || '')
+                .trim()
+                .toLowerCase() ===
+                (usuarioLogado.nome || '')
+                .trim()
+                .toLowerCase();
+
+        });
+
+    }
+
+    const tabela =
+        document.getElementById('tabelaConsultas');
+
+    tabela.innerHTML = '';
+
+    if(consultas.length === 0){
+
+        tabela.innerHTML = `
+        <tr>
+            <td colspan="7" style="text-align:center;padding:30px;">
+                Nenhuma consultoria encontrada.
+            </td>
+        </tr>
+        `;
+
+        return;
+    }
+
+    consultas.forEach(consulta=>{
+
+        let dataFormatada =
+            consulta.data.split('-').reverse().join('/');
+
+        tabela.insertAdjacentHTML('beforeend',`
+
+            <tr>
+
+                <td>${consulta.nome}</td>
+
+                <td>${consulta.especialista}</td>
+
+                <td>${dataFormatada}</td>
+
+                <td>${consulta.hora}</td>
+
+                <td>${consulta.humor || '-'}</td>
+
+                <td>
+                    <span class="status-consulta status-pendente">
+                        Agendada
+                    </span>
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn-ficha"
+                        onclick="abrirFichaConsulta('${consulta.nome}','${consulta.humor || '-'}','${consulta.obs || 'Nenhuma observação'}')">
+
+                        Ver ficha
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `);
+
+    });
+
+}
+
+function abrirFichaConsulta(nome, humor, observacao){
+
+    alert(
+`FICHA DE CONSULTORIA
+
+Paciente: ${nome}
+
+Humor informado:
+${humor}
+
+Observações:
+${observacao}`
+    );
+
+}
+function abrirDashboard(elemento){
+
+    document.querySelectorAll('.menu-item').forEach(item=>{
+        item.classList.remove('active');
+    });
+
+    elemento.classList.add('active');
+
+    document.querySelector('.metrics-grid').style.display = 'grid';
+    document.querySelector('.consults-section').style.display = 'flex';
+
+    document.getElementById('patientsSection').style.display = 'none';
+    document.getElementById('consultasPage').style.display = 'none';
+
+}
+function carregarPacientes(){
+
+    let todosAgendamentos =
+        JSON.parse(localStorage.getItem('agendamentosReset_DB')) || [];
+
+    let pacientesFiltrados = [];
+
+    if(usuarioLogado.papel === "admin"){
+
+        pacientesFiltrados = todosAgendamentos;
+
+    }else{
+
+        pacientesFiltrados = todosAgendamentos.filter(paciente => {
+
+            return (paciente.especialista || '')
+                .trim()
+                .toLowerCase() ===
+                (usuarioLogado.nome || '')
+                .trim()
+                .toLowerCase();
+
+        });
+
+    }
+
+    const container =
+        document.getElementById('listaPacientes');
+
+    container.innerHTML = '';
+
+    if(pacientesFiltrados.length === 0){
+
+        container.innerHTML = `
+            <div class="empty-state">
+                Nenhum paciente encontrado.
+            </div>
+        `;
+
+        return;
+    }
+
+    pacientesFiltrados.forEach(paciente=>{
+
+        let dataFormatada =
+            paciente.data.split('-').reverse().join('/');
+
+        container.insertAdjacentHTML('beforeend',`
+
+            <div class="patient-card">
+
+                <div class="patient-header">
+
+                    <div class="patient-avatar-big">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            <path d="M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h4>${paciente.nome}</h4>
+                        <p>Paciente da Reset</p>
+                    </div>
+
+                </div>
+
+                <div class="patient-data">
+
+                    <div>
+                        <span>Especialista</span>
+                        <strong>${paciente.especialista || '-'}</strong>
+                    </div>
+
+                    <div>
+                        <span>Data</span>
+                        <strong>${dataFormatada}</strong>
+                    </div>
+
+                    <div>
+                        <span>Horário</span>
+                        <strong>${paciente.hora || '-'}</strong>
+                    </div>
+
+                    <div>
+                        <span>Humor</span>
+                        <strong>${paciente.humor || '-'}</strong>
+                    </div>
+
+                    <div>
+                        <span>Observação</span>
+                        <strong>${paciente.obs || 'Nenhuma'}</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        `);
+
+    });
+
+}
+    </script>
+</body>
+</html>

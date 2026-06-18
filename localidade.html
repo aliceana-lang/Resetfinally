@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset | Localidade</title>
+
+  <style>
+    /* RESET BÁSICO */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* --- CABEÇALHO (NOVO PADRÃO) --- */
+   header{
+    width:100%;
+    height:170px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    background:white;
+    border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.logo img{
+    height:150px;
+    width: auto;
+    display: block;
+}
+
+/* --- BOTÃO VOLTAR (NOVO PADRÃO) --- */
+    .btn-voltar {
+        background-color: #315f8c; /* Azul acinzentado da sua imagem */
+        color: #ffffff;
+        text-decoration: none;
+        padding: 12px 28px;
+        border-radius: 8px; /* Cantos levemente arredondados */
+        font-weight: 600;
+        font-size: 15px;
+        box-shadow: 0 6px 15px rgba(49, 95, 140, 0.3); /* Sombra suave ao redor do botão */
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .btn-voltar:hover {
+        background-color: #23476b; /* Fica um pouco mais escuro ao passar o mouse */
+        transform: translateY(-2px); /* Efeito de flutuar levemente */
+        box-shadow: 0 8px 20px rgba(49, 95, 140, 0.4);
+    }
+
+    /* ESTILOS ORIGINAIS DO CORPO (HERO, MAPA, ETC) */
+    .hero-localizacao {
+        min-height: 75vh;
+        background: linear-gradient(rgba(8,28,58,.85),rgba(8,28,58,.85)),
+        url('fotos em geral/parte\ frente\ reset.png');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 80px 8%;
+        min-height:calc(100vh - 90px);
+        margin-top:90px;
+    }
+
+    .hero-overlay { max-width: 900px; }
+
+    .hero-tag {
+        background: rgba(255,255,255,.15);
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .hero-localizacao h1 { font-size: 55px; margin: 25px 0; font-weight: 700; }
+    .hero-localizacao p { font-size: 18px; line-height: 1.8; opacity: 0.9; }
+    .hero-botoes { margin-top: 35px; }
+
+    .btn-hero, .btn-hero-sec {
+        display: inline-block;
+        padding: 16px 32px;
+        border-radius: 14px;
+        text-decoration: none;
+        margin: 10px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-hero { background: #4f8df7; color: white; }
+    .btn-hero:hover { background: #3a75d9; }
+    
+    .btn-hero-sec { background: white; color: #123d70; }
+    .btn-hero-sec:hover { background: #f0f0f0; }
+
+    .mapa-premium { padding: 100px 8%; }
+    .titulo-secao { text-align: center; margin-bottom: 50px; }
+    .titulo-secao span { color: #4f8df7; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+    .titulo-secao h2 { font-size: 38px; color: #0b2a4a; margin-top: 10px; }
+    
+    .mapa-container iframe {
+        width: 100%; height: 500px; border: none;
+        border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,.1);
+    }
+
+    .informacoes-local {
+        padding: 40px 8% 80px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+        gap: 25px;
+    }
+
+    .info-card {
+        background: white; padding: 30px; border-radius: 22px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.05); transition: .3s;
+        border: 1px solid #f0f5fa;
+    }
+    .info-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,.08); }
+    .icone { font-size: 28px; margin-bottom: 15px; }
+    .info-card h3 { color: #0b2a4a; margin-bottom: 10px; }
+    .info-card p { color: #5a6e82; line-height: 1.6; font-size: 15px; }
+
+    .galeria-clinica { padding: 100px 8%; background: #f8fbff; }
+    .galeria-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .foto {
+        height: 250px; border-radius: 20px;
+        background: linear-gradient(135deg,#1f4b82,#5d9fff);
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 20px; font-weight: 600;
+    }
+/* --- NOVA SEÇÃO TOUR VR TURBO --- */
+.tour-vr {
+    padding: 120px 8%;
+    background: linear-gradient(rgba(6, 21, 42, 0.9), rgba(6, 21, 42, 0.9)), 
+                url('fotos em geral/parte\ frente\ reset.png'); /* Aqui você pode trocar pela foto da sua clínica */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efeito Parallax */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    text-align: left;
+}
+
+.tour-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.tour-content span.tag-vr {
+    background: #4f8df7;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.tour-content h2 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.tour-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ccd7e6;
+    margin-bottom: 40px;
+}
+
+/* Coluna da Direita - Detalhes */
+.tour-detalhes {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.detalhe-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.detalhe-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.detalhe-item i {
+    font-size: 24px;
+    color: #4f8df7;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.detalhe-item h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.detalhe-item p {
+    font-size: 14px;
+    color: #8da4be;
+    line-height: 1.4;
+}
+
+.btn-vr-novo {
+    display: inline-block;
+    padding: 20px 45px;
+    background: white;
+    color: #06152a;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.btn-vr-novo:hover {
+    background: #4f8df7;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Ajuste Responsivo */
+@media (max-width: 992px) {
+    .tour-vr {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 8%;
+    }
+    .tour-detalhes {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+}
+    /* --- RODAPÉ (NOVO PADRÃO) --- */
+    .rodape {
+        background-color: #0a1931; /* Azul escuro bem profundo */
+        color: #8da4be; /* Cinza azulado para os textos normais */
+        padding: 70px 8% 30px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .rodape-conteudo {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr 1.5fr; /* Proporção das 4 colunas */
+        gap: 40px;
+    }
+
+    .rodape-logo-container {
+        padding-right: 20px;
+    }
+
+    .rodape-logo-container img {
+        max-width: 280px; /* Ajuste para o tamanho da sua logo branca */
+        margin-bottom: 20px;
+    }
+
+    .rodape-conteudo h3 {
+        color: #ffffff; /* Títulos em branco */
+        font-size: 13px;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    .rodape-conteudo ul {
+        list-style: none;
+    }
+
+    .rodape-conteudo ul li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .rodape-conteudo ul li span {
+        font-size: 16px; /* Tamanho dos ícones/emojis */
+    }
+
+    .rodape-conteudo a {
+        color: #8da4be;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .rodape-conteudo a:hover {
+        color: #ffffff;
+    }
+
+    .linha-final {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 60px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08); /* Linha divisória bem sutil */
+        font-size: 13px;
+    }
+
+    /* --- TIMELINE (COMO FUNCIONA) --- */
+    .timeline-reset { padding: 100px 8%; }
+    
+    .timeline { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+        gap: 25px; 
+    }
+    
+    .passo {
+        background: white; 
+        padding: 30px; 
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,.05); 
+        text-align: center;
+        border: 1px solid #f0f5fa;
+    }
+    
+    .passo span {
+        width: 50px; 
+        height: 50px; 
+        background: #4f8df7; 
+        color: white;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        border-radius: 50%; 
+        margin: 0 auto 20px; 
+        font-weight: 700; 
+        font-size: 20px;
+    }
+    
+    .passo h3 { 
+        color: #0b2a4a; 
+        margin-bottom: 10px; 
+    }
+    
+    .passo p { 
+        color: #5a6e82; 
+        font-size: 15px; 
+        line-height: 1.5; 
+    }
+
+    /* MODAL */
+    .modal {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.85); z-index: 1000; justify-content: center; align-items: center;
+    }
+    .modal.ativo { display: flex; }
+    .modal-conteudo { background: white; padding: 40px; border-radius: 20px; max-width: 450px; text-align: center; position: relative; }
+    .fechar { position: absolute; top: 15px; right: 20px; font-size: 28px; background: none; border: none; cursor: pointer; color: #333; }
+    .modal-conteudo h2 { color: #0b2a4a; margin: 15px 0; }
+    .modal-conteudo p { color: #5a6e82; margin-bottom: 25px; line-height: 1.6; }
+    .botao-principal { display: inline-block; padding: 15px 30px; background: #4f8df7; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+        <a href="#">
+            <img src="fotos em geral/logosemnomeesemfundo.png" alt="Logo RESET">
+        </a>
+    </div>
+
+     <nav class="menu">
+      <a href="javascript:history.back()" class="btn-voltar">← Voltar</a>
+    </nav>
+  </header>
+
+  <section class="hero-localizacao">
+    <div class="hero-overlay">
+        <span class="hero-tag">📍 LOCALIZAÇÃO RESET</span>
+        <h1>Um espaço preparado para acolher, cuidar e transformar vidas.</h1>
+        <p>
+            Conheça nossa estrutura, descubra como chegar e explore nossos
+            ambientes antes mesmo da sua primeira visita.
+        </p>
+        <div class="hero-botoes">
+            <a href="#mapa" class="btn-hero">Ver Mapa</a>
+            <a href="#tour" class="btn-hero-sec">Tour Virtual</a>
+        </div>
+    </div>
+  </section>
+
+  <section id="mapa" class="mapa-premium">
+    <div class="titulo-secao">
+        <span>NOSSA LOCALIZAÇÃO</span>
+        <h2>Estamos no Recreio dos Bandeirantes</h2>
+        <p>Fácil acesso, região tranquila e ambiente preparado para receber pacientes e familiares com conforto.</p>
+    </div>
+    <div class="mapa-container">
+        <iframe src="https://www.google.com/maps?q=Estrada+do+Pontal+2327+Recreio+dos+Bandeirantes+Rio+de+Janeiro&output=embed" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section class="informacoes-local">
+    <div class="info-card">
+        <div class="icone">📍</div>
+        <h3>Endereço</h3>
+        <p>Estrada do Pontal, 2327<br>Recreio dos Bandeirantes, RJ</p>
+    </div>
+    <div class="info-card">
+        <div class="icone">🕒</div>
+        <h3>Funcionamento</h3>
+        <p>Segunda à Sexta<br>08h às 17h</p>
+    </div>
+    <div class="info-card">
+        <div class="icone">🚗</div>
+        <h3>Acesso</h3>
+        <p>Próximo às principais vias da região e com estacionamento próximo.</p>
+    </div>
+    <div class="info-card">
+        <div class="icone">📞</div>
+        <h3>Contato</h3>
+        <p>(21) 99876-5432</p>
+    </div>
+  </section>
+
+  <section class="galeria-clinica">
+    <div class="titulo-secao">
+        <span>CONHEÇA A RESET</span>
+        <h2>Nossa Estrutura</h2>
+    </div>
+    <div class="galeria-grid">
+        <div class="foto">
+              <img src="#" alt="Recepção">
+        </div>
+        <div class="foto">
+              <img src="#" alt="Sala terapêutica">
+        </div>
+        <div class="foto">
+              <img src="#" alt="Área de Paciente">
+        </div>
+        <div class="foto">
+              <img src="#" alt="Espaço de Atendimento">
+        </div>
+    </div>
+  </section>
+<section id="tour" class="tour-vr">
+
+    <div class="tour-content">
+        <span class="tag-vr">🥽 Realidade Virtual 360°</span>
+        <h2>Explore a RESET sem sair de casa</h2>
+        <p>
+            Sabemos que o primeiro passo é o mais difícil. Por isso, oferecemos uma 
+            experiência imersiva para que você conheça nosso ambiente seguro, 
+            acolhedor e moderno antes mesmo da sua primeira consulta.
+        </p>
+        <a href="#" class="btn-vr-novo" id="botaoVr">
+            ACESSAR TOUR AGORA
+        </a>
+    </div>
+
+    <div class="tour-detalhes">
+        <div class="detalhe-item">
+            <i>🛡️</i>
+            <h4>Ambiente Seguro</h4>
+            <p>Espaços projetados para garantir privacidade total e bem-estar emocional.</p>
+        </div>
+        <div class="detalhe-item">
+            <i>🌱</i>
+            <h4>Acolhimento</h4>
+            <p>Salas terapêuticas humanizadas, longe do aspecto frio de hospitais comuns.</p>
+        </div>
+        <div class="detalhe-item">
+            <i>⚡</i>
+            <h4>Tecnologia</h4>
+            <p>Infraestrutura moderna para diagnósticos e acompanhamento preciso.</p>
+        </div>
+        <div class="detalhe-item">
+            <i>☕</i>
+            <h4>Conforto</h4>
+            <p>Áreas de convivência feitas para que você se sinta em casa.</p>
+        </div>
+    </div>
+
+</section>
+
+<!--como funci-->
+  <section class="timeline-reset">
+    <div class="titulo-secao">
+        <span>SUA JORNADA</span>
+        <h2>Como Funciona</h2>
+    </div>
+    <div class="timeline">
+        <div class="passo">
+            <span>1</span>
+            <h3>Agende</h3>
+            <p>Entre em contato com nossa equipe.</p>
+        </div>
+        <div class="passo">
+            <span>2</span>
+            <h3>Conheça</h3>
+            <p>Visite a clínica ou faça o tour virtual.</p>
+        </div>
+        <div class="passo">
+            <span>3</span>
+            <h3>Inicie</h3>
+            <p>Comece seu acompanhamento especializado.</p>
+        </div>
+        <div class="passo">
+            <span>4</span>
+            <h3>Transforme</h3>
+            <p>Siga sua jornada de recuperação.</p>
+        </div>
+    </div>
+  </section>
+
+  <footer class="rodape" id="contato">
+    <div class="rodape-conteudo">
+      
+      <div class="rodape-logo-container">
+        <img src="fotos em geral/Centro De Apoio a Ludopatia (2).png" alt="Logo RESET">
+        <p>Sua nova versão começa hoje. Cuidado emocional com tecnologia e humanidade.</p>
+      </div>
+
+      <div>
+        <h3>Navegação</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Especialidades</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Equipe</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Serviços</h3>
+        <ul>
+          <li><a href="#">Psicologia Clínica</a></li>
+          <li><a href="#">Psiquiatria</a></li>
+          <li><a href="#">Terapia Familiar</a></li>
+          <li><a href="#">Emergência Emocional</a></li>
+          <li><a href="#">Bem-estar Corporativo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contato</h3>
+        <ul>
+          <li><span>📞</span> <a href="tel:+5521998765432">(21) 99876-5432</a></li>
+          <li><span>✉️</span> <a href="mailto:centrodeapoioreset@gmail.com">centrodeapoioreset@gmail.com</a></li>
+          <li><span>📍</span> Estr. do Pontal, 2327 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-877</li>
+          <li><span>📸</span> <a href="https://www.instagram.com/clinica.reset_/" target="_blank">@clinica.reset_</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="linha-final">
+      <span>© 2026 RESET — Centro Integrado de Apoio e Saúde Mental</span>
+      <span>Feito com 💙 para seu bem-estar</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="modalVr">
+    <div class="modal-conteudo">
+      <button class="fechar" id="fecharModal" type="button">×</button>
+      <span class="hero-tag" style="color:#0b2a4a; font-weight:bold; background:#f0f5fa; border:1px solid #dce5ef;">Realidade Virtual Reset</span>
+      <h2>Sua imersão está quase pronta</h2>
+      <p>Este botão pode ser conectado a um tour 360°, vídeo imersivo ou ambiente de realidade virtual da clínica.</p>
+      <a class="botao-principal" href="https://www.google.com/maps/search/?api=1&query=Estr.+do+Pontal,+2327+-+Recreio+dos+Bandeirantes,+Rio+de+Janeiro+-+RJ,+22790-877" target="_blank">Ver localização real</a>
+    </div>
+  </div>
+
+  <script>
+    const botaoVr = document.getElementById("botaoVr");
+    const modalVr = document.getElementById("modalVr");
+    const fecharModal = document.getElementById("fecharModal");
+
+    botaoVr.addEventListener("click", function (evento) {
+      evento.preventDefault(); 
+      modalVr.classList.add("ativo");
+    });
+
+    fecharModal.addEventListener("click", function () {
+      modalVr.classList.remove("ativo");
+    });
+
+    modalVr.addEventListener("click", function (evento) {
+      if (evento.target === modalVr) {
+        modalVr.classList.remove("ativo");
+      }
+    });
+
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") {
+        modalVr.classList.remove("ativo");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESET - Agendamento de Consulta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4a7fa7;
+            --primary-light: #A5B4FC;
+            --bg: #F8FAFC;
+            --text-main: #1A1D27;
+            --text-muted: #64748B;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 120px;
+        }
+
+        /* BACKGROUND AZUL SUPERIOR */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -220px;
+            right: -220px;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(59,113,254,0.18) 0%, rgba(59,113,254,0) 70%);
+            z-index: -2;
+        }
+
+        /* BACKGROUND AZUL INFERIOR */
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -250px;
+            left: -250px;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(165,180,252,0.18) 0%, rgba(165,180,252,0) 70%);
+            z-index: -2;
+        }
+        
+        /* HEADER PRINCIPAL (NAVEGAÇÃO) */
+         header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #ffffff;
+            padding: 0px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo img {
+            width: 235px;
+            height: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #1a3d63;
+            margin-left: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #0a1931;
+        }
+
+        .btn-voltar{
+            background: #912121;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-voltar:hover{
+            background: #912121;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px #912121;
+        }      
+
+        /* CAIXA BRANCA PRINCIPAL */
+        .container { 
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto 80px auto;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        /* SITE FOOTER */
+        .site-footer {
+            background-color: #0a1931;
+            color: #94A3B8;
+            padding: 60px 40px 20px;
+            font-family: Arial, sans-serif;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .brand-col {
+            flex: 1.5;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-image {
+            max-width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .brand-col p {
+            line-height: 1.6;
+            font-size: 14px;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #2e3a4e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .contact-col svg {
+            width: 16px;
+            height: 16px;
+            stroke: #1a3d63;
+        }
+
+        /* HEADER DENTRO DA CAIXA (TÍTULOS) */
+        .container-header { 
+            text-align: center; 
+            margin-bottom: 40px; 
+        }
+        
+        .category-label { color: var(--primary); font-weight: 600; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+        h1 { font-size: 32px; margin: 8px 0; font-weight: 800; }
+        .hours-info { color: var(--text-muted); font-size: 14px; }
+
+        /* STEPPER */
+        .stepper { display: flex; justify-content: space-between; margin-bottom: 40px; }
+        .step-item { flex: 1; text-align: center; }
+        .step-bar { height: 4px; background: #EDF2F7; border-radius: 2px; margin: 0 4px 8px 4px; transition: 0.3s; }
+        .step-item.active .step-bar { background: var(--primary); }
+        .step-name { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .step-item.active .step-name { color: var(--primary); }
+
+        .step-content { display: none; animation: fadeIn 0.4s ease; }
+        .step-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 { font-size: 20px; margin-bottom: 24px; }
+
+        /* CARDS DOS ESPECIALISTAS */
+        .specialist-card {
+            display: flex; align-items: center; padding: 30px; border: 1px solid var(--border);
+            border-radius: 30px; margin-bottom: 12px; cursor: pointer; transition: 0.2s;
+        }
+        .specialist-card:hover { border-color: var(--primary); background: #F0F7FF; }
+        .specialist-card.selected { border-color: var(--primary); background: #F0F7FF; border-width: 2px; }
+        
+        .avatar { width: 120px; height: 120px; border-radius: 12px; background: #CBD5E1; margin-right: 16px; object-fit: cover; object-position: center 12%; }
+        
+        .spec-info { flex: 1; }
+        .spec-name { font-weight: 700; font-size: 16px; }
+        .spec-role { color: var(--primary); font-size: 13px; font-weight: 600; }
+        .spec-id { color: var(--text-muted); font-size: 12px; }
+        .rating { color: #F59E0B; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 4px; }
+
+        /* DATAS E HORAS */
+        .date-grid { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 30px; }
+        .date-item { min-width: 80px; padding: 12px; border: 1px solid var(--border); border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .date-item:hover { border-color: var(--primary); }
+        .date-item.selected { background: var(--primary); color: white; border-color: var(--primary); }
+        .date-day { font-size: 10px; text-transform: uppercase; display: block; margin-bottom: 4px;}
+        .date-num { font-size: 18px; font-weight: 700; }
+
+        /*datas e mese*/
+        .date-month {font-size: 12px;color: var(--text-muted);display: block;}
+
+        .time-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .time-item { padding: 12px; border: 1px solid var(--border); border-radius: 12px; text-align: center; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .time-item:hover:not(.lunch):not(.booked) { border-color: var(--primary); background: #F0F7FF; }
+        .time-item.selected { border-color: var(--primary); color: var(--primary); background: #F0F7FF; border-width: 2px; }
+        
+        /* Classe para desabilitar itens de almoço e ocupados */
+        .time-item.lunch { background: #fee2e2; color: #912121; cursor: not-allowed; border: 1px dashed #fca5a5; opacity: 0.7;}
+        .time-item.booked { background: #f1f5f9; color: #94a3b8; cursor: not-allowed; border: 1px solid #e2e8f0; text-decoration: line-through; opacity: 0.7;}
+
+        /* SENTIMENTOS E FORMULÁRIO */
+        .mood-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .mood-item { padding: 20px; border: 1px solid var(--border); border-radius: 16px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .mood-item:hover { border-color: var(--primary); }
+        .mood-item.selected { border-color: var(--primary); background: #F0F7FF; border-width: 2px; }
+        .mood-emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        input, textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 12px; outline: none; transition: 0.2s; }
+        input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,113,254,0.1); }
+
+        .footer-btns { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
+        .btn-back { background: none; border: none; color: var(--text-muted); font-weight: 600; cursor: pointer; font-size: 16px; }
+        .btn-back:hover { color: #1A1D27; }
+        .btn-next { background: var(--primary); color: white; padding: 14px 32px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .btn-next:hover { background: #1a3d63; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 113, 254, 0.3); }
+
+    </style>
+</head>
+<body>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+  <div class="logo">
+    <img src="fotos em geral/logosemnomeesemfundo.png" alt="Logo RESET">
+  </div>
+  <nav>
+    <a href="saibamais.html">Sobre</a>
+    <a href="equipe.html">Equipe</a>
+    <a href="contatp.html">contato</a>
+    <a href="localidade.html">Localidade</a>
+    <a href="index.html" class="btn-voltar">voltar</a> 
+  </nav>
+</header>
+
+<div class="container">
+    <!-- HEADER DA CAIXA -->
+    <div class="container-header">
+        <span class="category-label">Agendamento</span>
+        <h1>Agende sua consulta</h1>
+        <p class="hours-info">Seg-Sex: 08:00–17:00 • Domingo e Sábado: Fechado</p>
+    </div>
+
+    <div class="stepper">
+        <div class="step-item active" id="s1"><div class="step-bar"></div><span class="step-name">Especialista</span></div>
+        <div class="step-item" id="s2"><div class="step-bar"></div><span class="step-name">Data e Hora</span></div>
+        <div class="step-item" id="s3"><div class="step-bar"></div><span class="step-name">Como se sente</span></div>
+        <div class="step-item" id="s4"><div class="step-bar"></div><span class="step-name">Seus Dados</span></div>
+        <div class="step-item" id="s5"><div class="step-bar"></div><span class="step-name">Confirmação</span></div>
+    </div>
+
+    <!-- ETAPA 1: Especialista -->
+    <div class="step-content active" id="content1">
+        <h2>Escolha o Especialista</h2>
+        
+        <div class="specialist-card" data-nome="Dra. Emily" onclick="selectSpec(this)">
+            <img src="fotos/emilydesenho.png" class="avatar" alt="Dra. Emily">
+            <div class="spec-info">
+                <p class="spec-name">Dra. Emily</p>
+                <p class="spec-role">Pisicológa Cliníca</p>
+                <p class="spec-id">CRP 06/98741</p>
+            </div>
+            <div class="rating">⭐ 4.9</div>
+        </div>
+
+        <div class="specialist-card" data-nome="Dra. Julia" onclick="selectSpec(this)">
+            <img src="fotos/professorayogajulia.png" class="avatar" alt="Dra. Julia">
+            <div class="spec-info">
+                <p class="spec-name">Dra. Júlia</p>
+                <p class="spec-role">Professora de Yoga</p>
+                <p class="spec-id">CRM SP 185432</p>
+            </div>
+            <div class="rating">⭐ 4.8</div>
+        </div>
+
+        <div class="specialist-card" data-nome="Dra. Alice" onclick="selectSpec(this)">
+            <img src="fotos/alicedese nhoofc.png" class="avatar" alt="Dra. Alice">
+            <div class="spec-info">
+                <p class="spec-name">Dra. Alice</p>
+                <p class="spec-role">Arte terapeuta</p>
+                <p class="spec-id">CRM SP 185432</p>
+            </div>
+            <div class="rating">⭐ 4.8</div>
+        </div>
+
+ <div class="specialist-card" data-nome="Dra. Hellen" onclick="selectSpec(this)">
+            <img src="fotos/hellen administradora desenho.png" class="avatar" alt="Dra. Hellen">
+            <div class="spec-info">
+                <p class="spec-name">Hellen</p>
+                <p class="spec-role">Educadora Financeira</p>
+                <p class="spec-id">CRM SP 185432</p>
+            </div>
+            <div class="rating">⭐ 4.0</div>
+        </div>
+		</div>
+
+
+    <!-- ETAPA 2: Data e Hora -->
+    <div class="step-content" id="content2">
+        <h2>Escolha a Data</h2>
+        <div class="date-grid" id="dateGrid">
+            <!-- Será gerado via Javascript em tempo real -->
+        </div>
+        
+        <h2>Escolha o Horário</h2>
+        <div class="time-grid" id="timeGrid">
+            <!-- Será gerado via Javascript em tempo real -->
+            <p style="grid-column: span 4; font-size: 14px; color: var(--text-muted); text-align: center;">Selecione uma data acima para visualizar os horários disponíveis.</p>
+        </div>
+    </div>
+
+    <!-- ETAPA 3: Sentimento -->
+    <div class="step-content" id="content3">
+        <h2>Como você está se sentindo hoje?</h2>
+        <div class="mood-grid">
+            <div class="mood-item" data-humor="Bem" onclick="selectMood(this)"><span class="mood-emoji">🤩</span><span class="mood-label">Bem</span></div>
+            <div class="mood-item" data-humor="Neutro" onclick="selectMood(this)"><span class="mood-emoji">😐</span><span class="mood-label">Neutro</span></div>
+            <div class="mood-item" data-humor="Mal" onclick="selectMood(this)"><span class="mood-emoji">😔</span><span class="mood-label">Mal</span></div>
+            <div class="mood-item" data-humor="Em crise" onclick="selectMood(this)"><span class="mood-emoji">😫</span><span class="mood-label">Em crise</span></div>
+        </div>
+    </div>
+
+    <!-- ETAPA 4: Dados -->
+<div class="step-content" id="content4">
+        <h2>Confirme seus Dados</h2>
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="inputNome" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="inputEmail" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Plano Atual</label>
+            <input type="text" id="inputPlano" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Observações (Opcional)</label>
+            <textarea id="inputObs" rows="3" placeholder="Há algo que o especialista deva saber antecipadamente?"></textarea>
+        </div>
+    </div>
+
+    <div class="footer-btns">
+        <button class="btn-back" onclick="changeStep(-1)">← Voltar</button>
+        <button class="btn-next" id="nextBtn" onclick="changeStep(1)">Próximo →</button>
+    </div>
+
+</div>
+
+<!--BACKGROUND/HEADER-->
+  <footer class="site-footer" id="contato">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="fotos em geral/Centro De Apoio a Ludopatia (2).png" alt="Logo da Empresa" class="footer-logo-image">
+                </div>
+                <p>Seu recomeço começa aqui. Cuidado emocional com tecnologia e humanidade.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#servicos">Especialidades</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="equipe.html">Equipe</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>SERVIÇOS</h4>
+                <ul>
+                    <li><a href="#">Psicologia Clínica</a></li>
+                    <li><a href="#">Psiquiatria</a></li>
+                    <li><a href="#">Terapia Familiar</a></li>
+                    <li><a href="#">Emergência Emocional</a></li>
+                    <li><a href="#">Bem-estar Corporativo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>CONTATO</h4>
+                <ul>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        (21) 99876-5432
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        centrodeapoioreset@gmail.com
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Estr. do Pontal, 2327 - Recreio dos Bandeirantes, Rio de Janeiro - RJ, 22790-877
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 RESET — Centro Integrado de Apoio e Saúde Mental</p>
+            <p>Feito com <span style="color:#3B82F6;">💙</span> para seu bem-estar</p>
+        </div>
+    </footer>
+
+<script>
+    let currentStep = 1;
+    const usuarioLogado =
+JSON.parse(localStorage.getItem("usuarioRESET"));
+
+if(!usuarioLogado){
+
+    alert(
+        "Faça login para realizar um agendamento."
+    );
+
+    window.location.href = "login.html";
+}
+    
+    // Objeto central onde vamos armazenar temporariamente todas as escolhas do usuário
+    let dadosAgendamento = {especialista:'',data:'',hora:'',humor:'',nome: usuarioLogado.nome,email: usuarioLogado.email,plano: usuarioLogado.plano,obs:''};
+
+    function changeStep(delta) {
+        // Validações ANTES de deixar o usuário avançar
+        if (delta === 1) {
+            if (currentStep === 1 && !dadosAgendamento.especialista) {
+                alert("Por favor, selecione um especialista para continuar.");
+                return;
+            }
+            if (currentStep === 2 && (!dadosAgendamento.data || !dadosAgendamento.hora)) {
+                alert("Por favor, selecione a data e o horário da consulta.");
+                return;
+            }
+            if (currentStep === 3 && !dadosAgendamento.humor) {
+                alert("Por favor, nos diga como você está se sentindo.");
+                return;
+            }
+            if (currentStep === 4) {
+                // Validação do formulário (Impedir de pular sem preencher)
+                const nome = document.getElementById('inputNome').value.trim();
+                const email = document.getElementById('inputEmail').value.trim();
+                const obs = document.getElementById('inputObs').value.trim();
+
+                if (nome === '' || email === '') {
+                    alert("Atenção! Os campos de Nome e Email são obrigatórios.");
+                    return;
+                }
+
+                dadosAgendamento.nome = nome;
+                dadosAgendamento.email = email;
+                dadosAgendamento.obs = obs;
+                
+                // Se tudo estiver certo, salva no nosso "Banco de Dados" e exibe o sucesso
+                finalizarAgendamento();
+        
+                return; // Encerra aqui, a função finalizarAgendamento vai lidar com a tela final
+            }
+        }
+
+        // Se clicar em voltar no passo 1, vai pra Home
+        if(currentStep === 1 && delta === -1) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        // Troca visual das etapas
+        document.getElementById(`content${currentStep}`).classList.remove('active');
+        document.getElementById(`s${currentStep}`).classList.remove('active');
+        
+        currentStep += delta;
+        
+        document.getElementById(`content${currentStep}`).classList.add('active');
+        document.getElementById(`s${currentStep}`).classList.add('active');
+        
+        // Altera o texto do botão no passo final
+        const btn = document.getElementById('nextBtn');
+        if (currentStep === 4) {
+            btn.innerHTML = "Confirmar Agendamento →";
+        } else {
+            btn.innerHTML = "Próximo →";
+        }
+    }
+
+    // Função para Selecionar o Especialista
+    function selectSpec(element) {
+        document.querySelectorAll('.specialist-card').forEach(i => i.classList.remove('selected'));
+        element.classList.add('selected');
+        dadosAgendamento.especialista = element.getAttribute('data-nome');
+        
+        // Se a pessoa trocar de especialista, reseta os horários para reavaliar a disponibilidade
+        dadosAgendamento.hora = ''; 
+        gerarHorarios();
+    }
+
+    // Função para Selecionar o Humor
+    function selectMood(element) {
+        document.querySelectorAll('.mood-item').forEach(i => i.classList.remove('selected'));
+        element.classList.add('selected');
+        dadosAgendamento.humor = element.getAttribute('data-humor');
+    }
+
+    // --- SISTEMA DE DATAS EM TEMPO REAL ---
+    function gerarDatas() {
+        const grid = document.getElementById('dateGrid');
+        grid.innerHTML = ''; // Limpa a grade
+
+        let hoje = new Date();
+        let diasAdicionados = 0;
+        let incremento = 0;
+       const diasSemana = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX','SÁB'];
+const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+        // Vai gerar os próximos 7 dias úteis
+        while (diasAdicionados < 10) {
+            let dataFutura = new Date(hoje);
+            dataFutura.setDate(hoje.getDate() + incremento);
+            incremento++;
+
+            // Se for domingo (0), pula e vai pro próximo dia
+            if ([0, 6].includes(dataFutura.getDay())) continue;
+
+            let diaFormatado = dataFutura.getDate().toString().padStart(2, '0');
+            let mesFormatado = (dataFutura.getMonth() + 1).toString().padStart(2, '0');
+            let ano = dataFutura.getFullYear();
+            let stringDataParaBanco = `${ano}-${mesFormatado}-${diaFormatado}`; // Ex: 2026-05-25
+
+            let div = document.createElement('div');
+            div.className = 'date-item';
+div.innerHTML = `<span class="date-day">${diasSemana[dataFutura.getDay()]}</span><span class="date-num">${diaFormatado}</span><span class="date-month">${meses[dataFutura.getMonth()]}</span>`;
+            
+            div.onclick = function() {
+                document.querySelectorAll('.date-item').forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                dadosAgendamento.data = stringDataParaBanco;
+                dadosAgendamento.hora = ''; // Reseta hora escolhida
+                gerarHorarios(); // Reconstrói horários disponíveis para essa nova data
+            };
+
+            grid.appendChild(div);
+            diasAdicionados++;
+        }
+    }
+
+    // --- SISTEMA DE HORÁRIOS E BANCO DE DADOS ---
+    function gerarHorarios() {
+        const grid = document.getElementById('timeGrid');
+        grid.innerHTML = '';
+
+        if (!dadosAgendamento.data) {
+            grid.innerHTML = '<p style="grid-column: span 4; font-size: 14px; color: var(--text-muted); text-align: center;">Selecione uma data acima para visualizar os horários disponíveis.</p>';
+            return;
+        }
+
+        const horasExpediente = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+        
+        // Puxamos do LocalStorage os agendamentos já salvos (simulando um Banco de Dados)
+        let bancoDeDadosLocal = JSON.parse(localStorage.getItem('agendamentosReset_DB')) || [];
+
+        horasExpediente.forEach(hora => {
+            let div = document.createElement('div');
+            div.className = 'time-item';
+
+            if (hora === '12:00' || hora === '13:00') {
+                div.className += ' lunch';
+                div.innerText = `${hora} (Almoço)`;
+            } else {
+                // Checa se já existe um agendamento com o mesmo Especialista, na mesma Data e mesma Hora
+                let horarioOcupado = bancoDeDadosLocal.find(agend => 
+                    agend.especialista === dadosAgendamento.especialista && 
+                    agend.data === dadosAgendamento.data && 
+                    agend.hora === hora
+                );
+
+                if (horarioOcupado) {
+                    div.className += ' booked'; // Adiciona a classe visual de ocupado
+                    div.innerText = `${hora} (Ocupado)`;
+                } else {
+                    div.innerText = hora;
+                    div.onclick = function() {
+                        document.querySelectorAll('.time-item').forEach(i => i.classList.remove('selected'));
+                        this.classList.add('selected');
+                        dadosAgendamento.hora = hora;
+                    };
+                }
+            }
+            grid.appendChild(div);
+        });
+    }
+
+    // --- SALVAR NO BANCO E EXIBIR SUCESSO ---
+    function finalizarAgendamento() {
+
+        console.log("Agendamento sendo salvo:", dadosAgendamento);
+
+        // 1. Puxamos o histórico do Banco
+        let bancoDeDadosLocal = JSON.parse(localStorage.getItem('agendamentosReset_DB')) || [];
+        
+        // 2. Adicionamos o novo paciente
+        bancoDeDadosLocal.push(dadosAgendamento);
+
+        //USUARIO
+        usuarioLogado.consultasRestantes--;
+
+localStorage.setItem(
+    "usuarioRESET",
+    JSON.stringify(usuarioLogado)
+);
+
+//HISTÓRICO PACIENTES
+        let historico =
+JSON.parse(
+localStorage.getItem("historicoRESET")
+) || [];
+
+historico.push({
+
+ paciente: usuarioLogado.nome,
+
+ especialista:
+ dadosAgendamento.especialista,
+
+ data:
+ dadosAgendamento.data,
+
+ hora:
+ dadosAgendamento.hora,
+
+ plano:
+ usuarioLogado.plano
+
+});
+
+localStorage.setItem(
+"historicoRESET",
+JSON.stringify(historico)
+);
+        
+        // 3. Salvamos de volta (Agora esse horário vai aparecer como ocupado se a pessoa atualizar a página)
+        localStorage.setItem('agendamentosReset_DB', JSON.stringify(bancoDeDadosLocal));
+
+        // Formatando a data de 2026-05-25 para 25/05/2026 para exibição
+        let dataVisual = dadosAgendamento.data.split('-').reverse().join('/');
+
+        // 4. Transformamos a tela atual na tela final de sucesso (Step 5)
+        document.querySelector('.container').innerHTML = `
+            <div style='text-align:center; padding: 40px 0;'>
+                <div style="font-size: 60px; margin-bottom: 20px;">✅</div>
+                <h1 style="color: var(--primary);">Agendamento Confirmado!</h1>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Tudo certo com a sua consulta.</p>
+                
+                <div style="background: #F8FAFC; border: 1px solid var(--border); border-radius: 16px; padding: 20px; max-width: 400px; margin: 0 auto 40px auto; text-align: left;">
+                    <p style="margin-bottom: 10px;"><strong>Especialista:</strong> ${dadosAgendamento.especialista}</p>
+                    <p style="margin-bottom: 10px;"><strong>Data e Hora:</strong> ${dataVisual} às ${dadosAgendamento.hora}</p>
+                    <p><strong>Paciente:</strong> ${dadosAgendamento.nome}</p>
+                </div>
+
+                <p style="font-size: 14px;">Enviamos as orientações completas para <strong>${dadosAgendamento.email}</strong>.</p>
+                <br><br>
+                <a href='index.html' style='background: var(--primary); color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-block;'>Voltar para a Página Inicial</a>
+            </div>
+        `;
+        
+        // Sobe a tela para o topo
+        window.scrollTo(0, 0);
+if(usuarioLogado.consultasRestantes <= 0){
+
+    alert(
+      "Você não possui consultas disponíveis."
+    );
+
+    return;
+}
+
+    }
+
+    // Inicializa as datas reais quando o site carregar
+   window.onload = function(){
+
+    gerarDatas();
+
+    document.getElementById("inputNome").value =
+    usuarioLogado.nome;
+
+    document.getElementById("inputEmail").value =
+    usuarioLogado.email;
+
+    document.getElementById("inputPlano").value =
+    usuarioLogado.plano;
+
+}
+</script>
+
+</body>
+</html>

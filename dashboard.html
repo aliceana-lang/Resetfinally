@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RESET - Dashboard</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4a7fa7 0%, #4A7FA7 100%);
+    padding:30px;
+}
+
+.dashboard{
+    width:100%;
+    max-width:1400px;
+    min-height:850px;
+    background:#fff;
+    border-radius:40px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
+}
+
+/* LADO ESQUERDO */
+
+.dashboard-esquerda{
+    background:linear-gradient(
+        180deg,
+        #4a7fa7,
+        #4a7fa7
+    );
+    padding:90px 75px;
+    color:white;
+    position:relative;
+}
+
+.logo-reset{
+    font-family:'Tenor Sans',serif;
+    font-size:78px;
+    font-weight:700;
+    margin-bottom:30px;
+    letter-spacing:-2px;
+}
+
+.texto-reset{
+    font-size:24px;
+    line-height:1.7;
+    max-width:550px;
+    opacity:.95;
+}
+
+.metricas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+    margin-top:90px;
+}
+
+.card-metrica{
+    width:190px;
+    height:130px;
+    background:rgba(255,255,255,.12);
+    border-radius:24px;
+    backdrop-filter:blur(12px);
+    padding:25px;
+}
+
+.card-metrica h2{
+    font-size:38px;
+    color:white;
+    margin-bottom:5px;
+}
+
+.card-metrica p{
+    font-size:18px;
+    color:white;
+}
+
+/* LADO DIREITO */
+
+.dashboard-direita{
+    padding:80px 75px;
+    background:#fff;
+}
+
+.tag{
+    color:#4a7fa7;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.dashboard-direita h1{
+    font-size:58px;
+    font-weight:800;
+    margin-bottom:50px;
+    color:#000;
+}
+
+.form-group{
+    margin-bottom:25px;
+}
+
+.form-group label{
+    display:block;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    height:64px;
+    border:2px solid #dbe2ea;
+    border-radius:20px;
+    padding:0 20px;
+    font-size:18px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#4a7fa7;
+}
+
+.plano-box{
+    margin-top:40px;
+    background:#f3f5f8;
+    border-radius:24px;
+    padding:25px;
+}
+
+.plano-box h3{
+    color:#667892;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+.plano-box p{
+    color:#667892;
+    font-size:16px;
+}
+
+.btn-acessar{
+    width:100%;
+    height:64px;
+    border:none;
+    border-radius:20px;
+    margin-top:18px;
+    background:linear-gradient(
+        90deg,
+        #4a7fa7,
+        #4a7fa7
+    );
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn-acessar:hover{
+    transform:translateY(-2px);
+}
+
+.termos{
+    text-align:center;
+    color:#667892;
+    margin-top:25px;
+    font-size:15px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1100px){
+
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-esquerda{
+        display:none;
+    }
+
+    .dashboard-direita{
+        padding:40px;
+    }
+
+    .dashboard-direita h1{
+        font-size:40px;
+    }
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<header class="dashboard-topo">
+
+<div>
+
+<h1>RESET.</h1>
+
+<p>
+Área do paciente
+</p>
+
+</div>
+
+
+<button onclick="sair()">
+Sair
+</button>
+
+
+</header>
+
+
+
+
+
+<section class="bemvindo">
+
+
+<h2>
+Olá, <span id="nomePaciente"></span>
+</h2>
+
+
+<p>
+Acompanhe sua jornada e seu tratamento
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section class="cards-dashboard">
+<div class="card">
+<h3>
+Plano atual
+</h3>
+
+<h2 id="planoAtual">
+-
+</h2>
+
+
+<p id="statusPlano">
+-
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+Consultas restantes
+</h3>
+
+
+<h2 id="consultas">
+-
+</h2>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+Próxima renovação
+</h3>
+
+
+<h2 id="renovacao">
+-
+</h2>
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+<section class="historico">
+
+
+<h2>
+Histórico de consultas
+</h2>
+
+
+
+<div id="listaConsultas">
+
+
+<p>
+Nenhuma consulta registrada.
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<div class="acoes">
+
+
+<button onclick="abrirAgendamento()">
+
+Agendar consulta
+
+</button>
+
+
+
+<button onclick="trocarPlano()">
+
+Trocar plano
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+let usuario = JSON.parse(
+localStorage.getItem("usuarioLogado")
+);
+
+
+
+if(!usuario){
+
+window.location.href="login.html";
+
+}
+
+
+
+
+
+if(!usuario.plano || usuario.plano.status !== "ativo"){
+
+
+alert("Você precisa ter um plano ativo.");
+
+window.location.href="planos.html";
+
+
+}
+
+
+
+
+
+
+
+document.getElementById("nomePaciente")
+.innerHTML = usuario.nome;
+
+
+
+
+
+document.getElementById("planoAtual")
+.innerHTML = usuario.plano.nome;
+
+
+
+
+
+document.getElementById("statusPlano")
+.innerHTML =
+"Status: " + usuario.plano.status;
+
+
+
+
+
+if(usuario.consultasRestantes === "ilimitado"){
+
+
+document.getElementById("consultas")
+.innerHTML =
+"Ilimitadas";
+
+
+}else{
+
+
+document.getElementById("consultas")
+.innerHTML =
+usuario.consultasRestantes;
+
+
+}
+
+
+
+
+
+
+
+document.getElementById("renovacao")
+.innerHTML =
+usuario.plano.renovacao;
+
+
+
+
+
+
+
+
+
+let consultas =
+usuario.consultas || [];
+
+
+
+
+
+let lista =
+document.getElementById("listaConsultas");
+
+
+
+
+if(consultas.length > 0){
+
+
+lista.innerHTML="";
+
+
+consultas.forEach(c=>{
+
+
+lista.innerHTML += `
+
+<div class="consulta">
+
+<h3>
+${c.data}
+</h3>
+
+<p>
+Profissional: ${c.profissional}
+</p>
+
+<p>
+Horário: ${c.horario}
+</p>
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+function abrirAgendamento(){
+
+
+window.location.href="agendamento.html";
+
+
+}
+
+
+
+
+
+
+
+function trocarPlano(){
+
+
+window.location.href="planos.html";
+
+
+}
+
+
+
+
+
+
+function sair(){
+
+
+localStorage.removeItem("usuarioLogado");
+
+
+window.location.href="login.html";
+
+
+}
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

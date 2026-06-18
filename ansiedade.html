@@ -1,0 +1,329 @@
+<!DOCTYPE html> 
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansiedade e Abstinência na Ludopatia - RESET</title>
+    <style>
+        /* Variáveis de cor em tons de azul (do mais claro ao mais escuro) */
+        :root {
+            --light-blue-bg: #E0F2FE;  /* Azul claríssimo para fundos sutis */
+            --brand-blue: #1a3d63;      /* Azul principal da marca */
+            --medium-blue: #1a3d63;     /* Azul intermediário para destaques */
+            --dark-blue: #0A1931;       /* Azul escuro profundo */
+            --text-grey: #475569;       /* Cinza escuro para leitura confortável */
+            --bg-white: #FFFFFF;
+            --bg-page: #F1F5F9;         /* Cinza azulado bem suave para o fundo da tela */
+        }
+
+        * {
+            box-sizing: border-box;
+            /* Efeito global para transições suaves em qualquer mudança de estilo */
+            transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            color: var(--dark-blue);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Principal com layout Split */
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr; /* Ajuste sutil para dar mais espaço ao texto */
+            max-width: 1250px;
+            width: 95%;
+            height: 85vh; /* Altura fixa para manter o visual elegante e equilibrado */
+            background: var(--bg-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(10, 25, 49, 0.08);
+        }
+
+        /* Lado Visual - Imagem de Arteterapia */
+        .visual-side {
+            background: var(--dark-blue);
+            position: relative;
+        }
+
+        .visual-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        /* Sobreposição em degradê usando os tons de azul da RESET */
+        .visual-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(59, 113, 254, 0.2) 0%, rgba(10, 25, 49, 0.85) 100%);
+        }
+
+        /* Lado do Conteúdo com rolagem interna para não quebrar o layout */
+        .content-side {
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Permite rolar o texto longo mantendo o design fixo */
+        }
+
+        /* Customização da barra de rolagem interna */
+        .content-side::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-side::-webkit-scrollbar-thumb {
+            background-color: var(--brand-blue);
+            border-radius: 10px;
+        }
+        .content-side::-webkit-scrollbar-track {
+            background: var(--light-blue-bg);
+            border-radius: 10px;
+        }
+
+        .section-label {
+            color: var(--brand-blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            color: var(--dark-blue);
+        }
+
+        h2 {
+            font-size: 22px;
+            color: var(--medium-blue);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--brand-blue);
+            padding-left: 10px;
+        }
+
+        p {
+            color: var(--text-grey);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: var(--light-blue-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 5px solid var(--brand-blue);
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--dark-blue);
+            font-weight: 500;
+        }
+
+        /* Estilização das listas explicativas */
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            margin-bottom: 5px; /* Reduzido para o efeito de hover */
+            color: var(--text-grey);
+            font-size: 15px;
+            line-height: 1.6;
+            padding: 10px; /* Adicionado para o efeito de hover */
+            border-radius: 8px;
+        }
+
+        /* Efeito de destaque ao passar o mouse nos itens da lista */
+        .info-list li:hover {
+            background-color: var(--light-blue-bg);
+            transform: translateX(5px); /* Pequeno deslocamento para a direita */
+        }
+
+        .info-list strong {
+            color: var(--dark-blue);
+        }
+
+        /* Ícone de Check Azul */
+        .check-icon {
+            margin-top: 3px;
+            color: var(--brand-blue);
+            flex-shrink: 0;
+        }
+
+        /* Container fixo ou no fim do fluxo para as ações */
+        .action-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: auto; /* Empurra para o final do container */
+            padding-top: 30px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        /* Botão Principal Call-to-Action */
+        .btn-agendar {
+            display: inline-block;
+            background-color: var(--brand-blue);
+            color: var(--bg-white);
+            padding: 16px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(59, 113, 254, 0.3);
+        }
+
+        /* Efeito de interação no botão principal */
+        .btn-agendar:hover {
+            background-color: var(--medium-blue);
+            transform: translateY(-3px); /* Elevação suave */
+            box-shadow: 0 8px 25px rgba(10, 25, 49, 0.4); /* Sombra mais profunda */
+        }
+
+        /* Botão Voltar para o Início */
+        .btn-voltar {
+            color: var(--text-grey);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px; /* Aumentado ligeiramente para a animação */
+        }
+
+        .btn-voltar:hover {
+            color: var(--brand-blue);
+        }
+
+        /* Animação na setinha do botão voltar ao passar o mouse */
+        .btn-voltar:hover svg {
+            animation: arrow-bounce 1s infinite;
+        }
+
+        @keyframes arrow-bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-4px); }
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                grid-template-columns: 1fr;
+                height: auto;
+                max-height: none;
+            }
+            .visual-side {
+                height: 250px;
+            }
+            .content-side {
+                overflow-y: visible;
+                padding: 40px 30px;
+            }
+            .action-container {
+                flex-direction: column;
+                align-items: stretch;
+                margin-top: 35px;
+            }
+            .btn-voltar {
+                justify-content: center;
+                order: 2;
+                padding: 10px;
+            }
+            .btn-agendar {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <!-- Lado Esquerdo: Imagem e Identidade Visual -->
+        <div class="visual-side">
+            <img src="fotos/alicedese nhoofc.png" alt="Espaço de Arteterapia - Dra. Alice">
+            <div class="visual-overlay"></div>
+        </div>
+
+        <!-- Lado Direito: Conteúdo Educacional e Informativo -->
+        <div class="content-side">
+            <span class="section-label">Apoio Especializado & Arteterapia</span>
+            <h1>Ludopatia: Entendendo a Ansiedade e a Abstinência</h1>
+            
+            <p>A <strong>ludopatia</strong> — popularmente conhecida como a dependência ou vício em jogos de azar e apostas digitais — é uma condição médica séria que altera diretamente os sistemas de recompensa do cérebro. Na plataforma <strong>RESET</strong>, entendemos que o primeiro passo para a recuperação é compreender os processos emocionais e físicos que prendem o indivíduo ao ciclo do jogo.</p>
+
+            <h2>O Papel da Ansiedade no Vício</h2>
+            <p>Para quem sofre com a ludopatia, a ansiedade atua de duas formas principais: como o <strong>gatilho inicial</strong> e como a <strong>consequência direta</strong> do comportamento compulsivo. Muitas pessoas recorrem às apostas ou aos jogos como uma válvula de escape mecânica para anestesiar tensões diárias, traumas ou frustrações. No entanto, o alívio dura poucos segundos, dando lugar a uma ansiedade ainda maior gerada pelas perdas financeiras, mentiras e quebra de laços de confiança.</p>
+
+            <h2>A Síndrome de Abstinência de Jogos</h2>
+            <p>Engana-se quem pensa que a abstinência se restringe a substâncias químicas. Quando um jogador compulsivo decide parar de jogar, o cérebro — acostumado com descargas massivas e artificiais de dopamina — entra em um estado de privação profunda. Isso gera sintomas severos nas primeiras semanas:</p>
+
+            <ul class="info-list">
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Sintomas Psicológicos:</strong> Irritabilidade extrema, oscilações severas de humor, depressão, pensamentos obsessivos focados em jogar ("fissura") e episódios de pânico.</span>
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Sintomas Físicos:</strong> Insônia severa, dores de cabeça tensionais, tremores nas mãos, suores frios e crises de taquicardia nos momentos de maior fissura.</span>
+                </li>
+                <li>
+                    <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span><strong>Ilusão de Recuperação:</strong> A mente tenta convencer o indivíduo de que jogar "só mais uma vez" irá resolver o sofrimento físico ou recuperar o dinheiro perdido.</span>
+                </li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Como a Arteterapia com a Dra. Alice ajuda você?</strong><br>
+                A mente em abstinência fica bloqueada por palavras e sentimentos confusos. Através das sessões conduzidas pela Dra. Alice, utilizamos a expressão artística (desenho, pintura, modelagem e colagem) como um canal seguro. A arte terapia ajuda a exteriorizar a dor que a fala não consegue organizar, reduzindo os níveis de cortisol (hormônio do estresse) e ensinando o cérebro a focar a atenção no momento presente, reconstruindo a paciência e o autocontrole.</p>
+            </div>
+
+            <p>Se você ou alguém que você ama está enfrentando a urgência incontrolável de jogar, saiba que essa tempestade química e emocional é temporária e tratável. Você não precisa carregar esse peso sozinho.</p>
+            
+            <!-- Botões de Ação -->
+            <div class="action-container">
+                <a href="agendamento.html" class="btn-agendar">Iniciar Arteterapia com a Dra. Alice</a>
+                <a href="Cabeça.html" class="btn-voltar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Voltar ao início
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

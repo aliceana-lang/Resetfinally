@@ -1,0 +1,310 @@
+<!DOCTYPE html> 
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depressão, Distúrbios Alimentares e Ludopatia - RESET</title>
+    <style>
+        /* Variáveis de cores em tons de azul (do mais claro ao mais escuro) */
+        :root {
+            --deep-blue: #0A1931;       /* Azul Escuro Profundo (Fundo visual e títulos principais) */
+            --brand-blue: #1a3d63;      /* Azul Escuro Intermediário */
+            --royal-blue: #1a3d63;      /* Azul Royal Metálico (Destaques e Botão Principal) */
+            --sky-blue: #A5F3FC;        /* Azul Céu Claro (Filtros e bordas secundárias) */
+            --ice-blue: #F0F7FF;        /* Azul Gelo Super Claro (Fundo de caixas de destaque) */
+            --text-grey: #475569;       /* Cinza escuro para leitura confortável */
+            --bg-page: #F8FAFC;         /* Fundo da página */
+            --white: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+            color: var(--deep-blue);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Principal com layout Split */
+        .page-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr; /* Visual à esquerda, Conteúdo à direita */
+            max-width: 1300px;
+            width: 95%;
+            height: 90vh; /* Mantém proporção elegante na tela */
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(10, 25, 49, 0.08);
+        }
+
+        /* Lado Visual (Esquerda) */
+        .visual-side {
+            background: var(--deep-blue);
+            position: relative;
+        }
+
+        .visual-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        /* Sobreposição em degradê azul da marca */
+        .visual-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(59, 113, 254, 0.35) 0%, rgba(10, 25, 49, 0.9) 100%);
+        }
+
+        /* Lado do Conteúdo (Direita) - Com rolagem macia para textos extensos */
+        .content-side {
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .section-label {
+            color: var(--royal-blue);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin: 0 0 25px 0;
+            line-height: 1.2;
+            color: var(--deep-blue);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: var(--brand-blue);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            border-left: 5px solid var(--royal-blue);
+            padding-left: 15px;
+        }
+
+        p {
+            color: var(--text-grey);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .intro-text {
+            color: var(--deep-blue);
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* Caixas de Destaque Informativas (Azul Gelo) */
+        .highlight-box {
+            background-color: var(--ice-blue);
+            border-left: 4px solid var(--royal-blue);
+            border-radius: 0 12px 12px 0;
+            padding: 22px;
+            margin: 25px 0;
+        }
+
+        .highlight-box p {
+            color: var(--deep-blue);
+            margin: 0;
+            font-size: 15.5px;
+            font-style: italic;
+        }
+
+        /* Listas de Sintomas e Sinais Clínicos */
+        .clinical-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 35px 0;
+        }
+
+        .clinical-list li {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            margin-bottom: 18px;
+            color: var(--text-grey);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Ícone de Check em SVG */
+        .check-icon {
+            margin-top: 4px;
+            color: var(--royal-blue);
+            flex-shrink: 0;
+        }
+
+        /* Container de Ação Fixo ao Final */
+        .action-container {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            margin-top: auto; /* Força os botões para o final do fluxo */
+            padding-top: 40px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        /* Botão Principal: Agendar com a Dra. Emily */
+        .btn-agendar {
+            display: inline-block;
+            background-color: var(--royal-blue);
+            color: var(--white);
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 113, 254, 0.3);
+        }
+
+        .btn-agendar:hover {
+            background-color: var(--deep-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(10, 25, 49, 0.4);
+        }
+
+        /* Botão Secundário: Voltar ao Início do Site */
+        .btn-voltar {
+            color: var(--text-grey);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-voltar:hover {
+            color: var(--royal-blue);
+        }
+
+        /* Customização Estética da Barra de Rolagem Interna */
+        .content-side::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-side::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .content-side::-webkit-scrollbar-thumb {
+            background-color: rgba(10, 25, 49, 0.15);
+            border-radius: 20px;
+        }
+        .content-side::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(59, 113, 254, 0.3);
+        }
+
+        /* Responsividade Básica para telas menores */
+        @media (max-width: 992px) {
+            .page-wrapper {
+                grid-template-columns: 1fr;
+                height: auto;
+                max-height: 95vh;
+            }
+            .visual-side {
+                display: none; /* Oculta o lado visual em telas de celular para focar no texto */
+            }
+            .content-side {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="visual-side">
+            <img src="fotos/emilydesenho.png" alt="Espaço Clínico - Dra. Emily">
+            <div class="visual-overlay"></div>
+        </div>
+
+        <div class="content-side">
+            <span class="section-label">Corpo Clínico RESET — Dra. Emily</span>
+            <h1>Comorbidades na Ludopatia: Entendendo a Mente Compulsiva</h1>
+            
+            <p class="intro-text">
+                O vício em jogos (ludopatia) raramente atua de forma isolada no organismo e na psique humana. Na plataforma RESET, defendemos que tratar apenas o comportamento de apostar é olhar superficialmente para o problema. Sob a coordenação da Dra. Emily, este espaço dedica-se a decifrar as duas maiores ramificações associadas à dependência de jogos: os quadros depressivos crônicos e os distúrbios de ordem alimentar.
+            </p>
+
+            <h2>1. O Vazio Clínico: A Depressão de Base e Secundária</h2>
+            <p>
+                A relação entre a depressão e a ludopatia estabelece um dos ciclos mais destrutivos da psiquiatria clínica. Ela pode se manifestar de duas formas: como uma <strong>patologia de base</strong> (onde o indivíduo já deprimido e com baixa produção natural de neurotransmissores como a serotonina e dopamina encontra no jogo uma anestesia temporária) ou de forma <strong>secundária</strong> (decorrente do isolamento, colapso financeiro, divórcios e quebra de laços familiares causados pelo vício).
+            </p>
+            <p>
+                O cérebro do jogador compulsivo sofre alterações neuroquímicas drásticas. Com o tempo, as atividades comuns do dia a dia perdem completamente a capacidade de gerar prazer (quadro conhecido como anedonia). O jogo passa a ser o único estímulo capaz de retirar o paciente do estado de apatia profunda, gerando picos artificiais e violentos de adrenalina que duram pouco, cobrando um preço altíssimo logo em seguida.
+            </p>
+
+            <div class="highlight-box">
+                <p><strong>Sinal de Alerta:</strong> A depressão ligada à ludopatia eleva drasticamente os índices de ideação suicida, pois o indivíduo sente-se encurralado entre a dor emocional da abstinência e as consequências financeiras e morais de seus atos.</p>
+            </div>
+
+            <ul class="clinical-list">
+                <li>
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <strong>Anedonia severa:</strong> Perda total do interesse pelo trabalho, estudos, convívio familiar e cuidados básicos de higiene.
+                </li>
+                <li>
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <strong>Culpabilidade paralisante:</strong> Crises frequentes de choro e remorso severo após sessões de apostas, seguidas por pensamentos de autoflagelação ou fuga da realidade.
+                </li>
+                <li>
+                    <svg class="check-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <strong>Alteração do ciclo circadiano:</strong> Insônia severa motivada pela atividade noturna em plataformas digitais de apostas, desregulando o cortisol (hormônio do estresse).
+                </li>
+            </ul>
+
+            <h2>2. Distúrbios, Compulsões e Desregulação Alimentar</h2>
+            <p>
+                A perda do controle dos impulsos e a busca por recompensas imediatas não se limitam às telas ou aos cassinos. A neurobiologia explica que os mecanismos de recompensa cerebral ativados pelo jogo são idênticos aos acionados pelo consumo descontrolado de alimentos ricos em açúcares e gorduras saturadas. A Dra. Emily destaca dois comportamentos alimentares severos em pacientes ludopatas:
+            </p>
+            <p>
+                <strong>Transtorno da Compulsão Alimentar (TCA):</strong> Ocorre frequentemente nos períodos de ressaca do jogo ou em momentos de perdas severas de dinheiro. O indivíduo engole grandes volumes de comida em um intervalo curtíssimo, sem fome física, usando o alimento como um analgésico biológico para conter os picos de ansiedade crônica e desespero.
+            </p>
+            <p>
+                <strong>Negligência e Restrição por Hiperfoco:</strong> No extremo oposto, pacientes em fases agudas de apostas entram em estados de transe e hiperfoco diante de telas e jogos eletrônicos. Passam-se 12, 18 ou 24 horas consecutivas sem que o indivíduo faça uma única refeição estruturada ou beba água adequadamente. Esse jejum forçado debilita o físico, piora as funções cognitivas e agrava diretamente o quadro depressivo.
+            </p>
+
+            <div class="highlight-box">
+                <p><strong>A Migração do Vício:</strong> É comum que pacientes em recuperação da ludopatia passem a descontar a falta do jogo na comida, desenvolvendo obesidade ou quadros de bulimia nervosa caso o suporte clínico adequado não ocorra.</p>
+            </div>
+
+            <h2>O Caminho para o Recomeço</h2>
+            <p>
+                O tratamento conduzido pela Dra. Emily foca no restabelecimento do equilíbrio integrado. Através de metodologias psicoterapêuticas avançadas, nós mapeamos os gatilhos emocionais ocultos que fazem você buscar o jogo ou a comida como refúgio, devolvendo a autonomia sobre suas decisões e restabelecendo sua saúde de forma global.
+            </p>
+            
+            <div class="action-container">
+                <a href="agendamento.html" class="btn-agendar">Agendar Consulta com a Dra. Emily</a>
+                <a href="Cabeça.html" class="btn-voltar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Voltar ao Início
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
